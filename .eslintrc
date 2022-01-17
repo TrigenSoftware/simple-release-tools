@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "extends": [
+    "@trigen/eslint-config",
+    "@trigen/eslint-config/esm",
+    "@trigen/eslint-config/typescript",
+    "@trigen/eslint-config/typescript-requiring-type-checking",
+    "@trigen/eslint-config/jest"
+  ],
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+    "tsconfigRootDir": "./",
+    "project": ["./tsconfig.json", "./test/tsconfig.json"]
+  },
+  "rules": {
+    "no-console": "off",
+    "no-template-curly-in-string": "off"
+  }
+}

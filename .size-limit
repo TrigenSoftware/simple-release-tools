@@ -1,0 +1,10 @@
+[
+  {
+    "path": "dist/index.js",
+    "limit": "2.3 kB"
+  },
+  {
+    "path": "dist/cli/index.js",
+    "limit": "1.4 kB"
+  }
+]

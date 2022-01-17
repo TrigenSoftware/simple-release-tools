@@ -1,0 +1,18 @@
+{
+  "testEnvironment": "node",
+  "testRegex": "src/.*\\.spec\\.(jsx?|tsx?)$",
+  "transform": {
+    "^.+\\.(t|j)sx?$": "@swc/jest"
+  },
+  "transformIgnorePatterns": ["/node_modules/(?!.*new-github-release-url)"],
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/cli/**/*",
+    "!**/*.d.ts"
+  ],
+  "coverageReporters": [
+    "lcovonly",
+    "text"
+  ]
+}
