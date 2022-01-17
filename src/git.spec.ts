@@ -3,7 +3,7 @@ import { getRemoteUrl, parseGitUrl } from './git'
 describe('git', () => {
   describe('getRemoteUrl', () => {
     it('should get remote url', async () => {
-      expect(await getRemoteUrl()).toBe('git@github.com:TrigenSoftware/simple-github-release.git')
+      expect(['git@github.com:TrigenSoftware/simple-github-release.git', 'https://github.com/TrigenSoftware/simple-github-release']).toContain(await getRemoteUrl())
     })
   })
 
