@@ -38,7 +38,7 @@
     "commit": "cz",
     "bumpVersion": "standard-version",
     "createGithubRelease": "./dist/cli/index.js",
-    "release": "standard-version && git push origin main --tags && pnpm createGithubRelease",
+    "release": "pnpm bumpVersion && git push origin main --tags && pnpm createGithubRelease",
     "updateGitHooks": "simple-git-hooks"
   },
   "dependencies": {
