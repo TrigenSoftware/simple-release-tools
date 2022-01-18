@@ -5,7 +5,7 @@ import { readLastChangesFromStream } from './changelog'
 describe('changelog', () => {
   describe('readLastChangesFromStream', () => {
     it('should read last changes from file', async () => {
-      const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG.md'))
+      const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG_0.md'))
 
       expect(await readLastChangesFromStream(stream)).toMatchInlineSnapshot(`
 Array [
@@ -13,10 +13,6 @@ Array [
   "### Bug Fixes
 
 * **deps:** update dependency dotenv to v11 ([#16](https://github.com/TrigenSoftware/scripts/issues/16)) ([27e4ce7](https://github.com/TrigenSoftware/scripts/commit/27e4ce7414f6d50fec9fe363238d771cf49b4cd7))
-* **deps:** update dependency eslint to v8 ([#17](https://github.com/TrigenSoftware/scripts/issues/17)) ([9dac68c](https://github.com/TrigenSoftware/scripts/commit/9dac68c423a53a53f6ccbd5c19905cdb851b6ea5))
-* **deps:** update dependency eslint-plugin-jest-dom to v4 ([#15](https://github.com/TrigenSoftware/scripts/issues/15)) ([8133db1](https://github.com/TrigenSoftware/scripts/commit/8133db151811134b8fc2a22df5efd63bb8d51387))
-* **deps:** update typescript-eslint monorepo to v5 ([#18](https://github.com/TrigenSoftware/scripts/issues/18)) ([87f8d42](https://github.com/TrigenSoftware/scripts/commit/87f8d42f749665b8df0daa1c1631b9ac9ca57048))
-
 
 ### Features
 
@@ -27,7 +23,7 @@ Array [
     })
 
     it('should read last changes from file with header', async () => {
-      const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG.md'))
+      const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG_0.md'))
       const options = {
         includeTitle: true
       }
@@ -37,18 +33,50 @@ Array [
   "8.0.0-alpha.2",
   "# [8.0.0-alpha.2](https://github.com/TrigenSoftware/scripts/compare/v8.0.0-alpha.1...v8.0.0-alpha.2) (2022-01-14)
 
-
 ### Bug Fixes
 
 * **deps:** update dependency dotenv to v11 ([#16](https://github.com/TrigenSoftware/scripts/issues/16)) ([27e4ce7](https://github.com/TrigenSoftware/scripts/commit/27e4ce7414f6d50fec9fe363238d771cf49b4cd7))
-* **deps:** update dependency eslint to v8 ([#17](https://github.com/TrigenSoftware/scripts/issues/17)) ([9dac68c](https://github.com/TrigenSoftware/scripts/commit/9dac68c423a53a53f6ccbd5c19905cdb851b6ea5))
-* **deps:** update dependency eslint-plugin-jest-dom to v4 ([#15](https://github.com/TrigenSoftware/scripts/issues/15)) ([8133db1](https://github.com/TrigenSoftware/scripts/commit/8133db151811134b8fc2a22df5efd63bb8d51387))
-* **deps:** update typescript-eslint monorepo to v5 ([#18](https://github.com/TrigenSoftware/scripts/issues/18)) ([87f8d42](https://github.com/TrigenSoftware/scripts/commit/87f8d42f749665b8df0daa1c1631b9ac9ca57048))
-
 
 ### Features
 
 * **browserslist-config:** update queries, add esm queries ([3031c6b](https://github.com/TrigenSoftware/scripts/commit/3031c6b322330be57654bdebc1012bddc20e7972))
+",
+]
+`)
+    })
+
+    it('should split titile without link', async () => {
+      const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG_1.md'))
+
+      expect(await readLastChangesFromStream(stream)).toMatchInlineSnapshot(`
+Array [
+  "0.0.1-1",
+  "### Bug Fixes
+
+* **cli:** fix config file loading ([8603c2f](https://github.com/TrigenSoftware/simple-github-release/commit/8603c2fde4aeb53619fae8bb9feba53093f51c65))
+",
+]
+`)
+    })
+
+    it('should read keep a changelog', async () => {
+      const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG_2.md'))
+
+      expect(await readLastChangesFromStream(stream)).toMatchInlineSnapshot(`
+Array [
+  "1.0.0",
+  "### Added
+- Version navigation.
+- Links to latest released version in previous versions.
+- \\"Why keep a changelog?\\" section.
+
+### Changed
+- Start using \\"changelog\\" over \\"change log\\" since it's the common usage.
+- Start versioning based on the current English version at 0.3.0 to help
+translation authors keep things up-to-date.
+
+### Removed
+- Section about \\"changelog\\" vs \\"CHANGELOG\\".
 ",
 ]
 `)

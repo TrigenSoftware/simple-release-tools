@@ -86,7 +86,7 @@ pnpm release
 
 | Options | Description | Default |
 |---------|-------------|---------|
-| titleRegExp | Regular expression to find release title in changelog. Must contain capture group, which will be used to detect release version. As fallback, version will read from package.json. | `/^#+ \[([^\]]*\d+\.\d+\.\d+[^\]]*)\]/` |
+| titleRegExp | Regular expression to find release title in changelog. Must contain capture group, which will be used to detect release version. As fallback, version will read from package.json. | not required |
 | includeTitle | Include release title into release notes. | `false` |
 | remoteUrl | GitHub repository remote url. | From local environment. |
 | host | Custom API host. | `'github.com'` |

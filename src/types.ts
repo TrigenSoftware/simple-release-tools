@@ -3,7 +3,6 @@ export interface Options {
    * Regular expression to find release title in changelog.
    * Must contain capture group, which will be used to detect release version.
    * As fallback, version will read from package.json.
-   * @default /^#+ \[([^\]]*\d+\.\d+\.\d+[^\]]*)\]/
    */
   titleRegExp?: RegExp
   /**

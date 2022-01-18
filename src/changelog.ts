@@ -10,7 +10,7 @@ import { Options } from './types'
  */
 export async function readLastChangesFromStream(stream: Readable, options: Pick<Options, 'titleRegExp' | 'includeTitle'> = {}) {
   const {
-    titleRegExp = /^#+ \[([^\]]*\d+\.\d+\.\d+[^\]]*)\]/,
+    titleRegExp = /^#+ \[?([^[\]()\s]*\d+\.\d+\.\d+[^[\]()\s]*)\]?/,
     includeTitle = false
   } = options
   let inLastChanges = false
