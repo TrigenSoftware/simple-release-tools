@@ -58,9 +58,9 @@ npm i -D simple-github-release
 
 or create `.simple-github-release.js` or `.simple-github-release.json` file
 
-```json
-{
-  "releaseName": "Release ${version}"
+```js
+export default {
+  releaseName: 'Release ${version}'
 }
 ```
 

@@ -41,7 +41,10 @@ async function getOptionsFromConfig() {
       'package.json',
       '.simple-github-release.json',
       '.simple-github-release.js'
-    ]
+    ],
+    loaders: {
+      '.js': file => import(file)
+    }
   }).search()
   const options = result
     ? result.config as Options
