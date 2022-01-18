@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/TrigenSoftware/simple-github-release/compare/v1.0.0-0...v1.0.0) (2022-01-18)
+
+
+### Bug Fixes
+
+* rm useless files from package ([0c8f200](https://github.com/TrigenSoftware/simple-github-release/commit/0c8f2007329b59a8b9eb35ac3f6c3459a3c06cc4))
+
 ## [1.0.0-0](https://github.com/TrigenSoftware/simple-github-release/compare/v0.0.1-1...v1.0.0-0) (2022-01-18)
 
 
