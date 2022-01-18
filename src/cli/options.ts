@@ -36,7 +36,13 @@ function getOptionsFromArgv(): Options {
 }
 
 async function getOptionsFromConfig() {
-  const result = await lilconfig('simple-github-release').search()
+  const result = await lilconfig('simple-github-release', {
+    searchPlaces: [
+      'package.json',
+      '.simple-github-release.json',
+      '.simple-github-release.js'
+    ]
+  }).search()
   const options = result
     ? result.config as Options
     : {}

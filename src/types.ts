@@ -23,7 +23,7 @@ export interface Options {
   host?: string
   /**
    * Path to read changelog file.
-   * @default './CHANGELOG.md'
+   * @default 'CHANGELOG.md'
    */
   changelogLocation?: string
   /**
@@ -46,11 +46,12 @@ export interface Options {
   prerelease?: boolean
   /**
    * Create release with automatically generated notes.
+   * Changelog file will be ignored.
    * @default false
    */
   auto?: boolean
   /**
-   * Create link to make release in browser.
+   * Create link to create release in browser.
    * @default !process.env.GITHUB_TOKEN
    */
   browser?: boolean
