@@ -72,13 +72,19 @@ export class GitHubClient {
    * @returns Created release data.
    */
   async createRelease(release: GitHubRelease) {
-    const options = this.getOctokitReleaseOptions(release)
-    const response = await this.client.repos.createRelease(options)
-    const { id, html_url } = response.data
+    try {
+      const options = this.getOctokitReleaseOptions(release)
+      const response = await this.client.repos.createRelease(options)
+      const { id, html_url } = response.data
 
-    return {
-      id,
-      releaseUrl: html_url
+      return {
+        id,
+        releaseUrl: html_url
+      }
+    } catch (err) {
+      throw 'status' in err
+        ? new Error(`Can't create release, please check validity of access token`)
+        : err
     }
   }
 
@@ -89,19 +95,25 @@ export class GitHubClient {
    * @returns Updated release data.
    */
   async updateRelease(releaseId: number, release: GitHubRelease) {
-    const options = {
-      ...this.getOctokitReleaseOptions(release),
-      release_id: releaseId
-    }
-    const response = await this.client.repos.updateRelease(options)
-    const {
-      id,
-      html_url
-    } = response.data
+    try {
+      const options = {
+        ...this.getOctokitReleaseOptions(release),
+        release_id: releaseId
+      }
+      const response = await this.client.repos.updateRelease(options)
+      const {
+        id,
+        html_url
+      } = response.data
 
-    return {
-      id,
-      releaseUrl: html_url
+      return {
+        id,
+        releaseUrl: html_url
+      }
+    } catch (err) {
+      throw 'status' in err
+        ? new Error(`Can't update release, please check validity of access token`)
+        : err
     }
   }
 

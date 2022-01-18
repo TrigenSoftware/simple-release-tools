@@ -5,7 +5,8 @@ import { getContext } from './context'
 import { getReleaseData } from './release'
 import {
   warn,
-  link
+  link,
+  error
 } from './console'
 
 void (async () => {
@@ -13,6 +14,7 @@ void (async () => {
   const options = await getOptions()
   const context = await getContext(options)
   const client = new GitHubClient({
+    auth: GITHUB_TOKEN,
     repo: context.repo
   })
   const release = getReleaseData(options, context)
@@ -44,4 +46,4 @@ void (async () => {
   }
 
   link(releaseUrl)
-})()
+})().catch(error)
