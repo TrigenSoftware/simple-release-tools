@@ -91,7 +91,7 @@ pnpm release
 | remoteUrl | GitHub repository remote url. | From local environment. |
 | host | Custom API host. | `'github.com'` |
 | changelogLocation | Path to read changelog file. | `'CHANGELOG.md'` |
-| releaseName | Release name to create. You are able to use some placeholders: `${tag}` - latest git tag name, as fallback will used 'v${version}'; `${version}` - version. | `'${tag}'` |
+| releaseName | Release name to create. You are able to use some placeholders: `${tag}` - latest git tag name, as fallback will used `'v${version}'`; `${version}` - version. | `'${tag}'` |
 | draft | Create release draft. | `false` |
 | prerelease | Create pre-release. | `false` |
 | auto | Create release with automatically generated notes. Changelog file will be ignored. | `false` |
