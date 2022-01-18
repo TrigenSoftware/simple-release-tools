@@ -21,6 +21,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Publish
-        run: pnpm publish
+        run: pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
