@@ -67,7 +67,7 @@
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.8",
     "browserslist": "^4.19.1",
-    "clean-publish": "^3.4.0",
+    "clean-publish": "^4.0.0",
     "commitizen": "^4.2.4",
     "del-cli": "^4.0.1",
     "eslint": "^8.0.0",
