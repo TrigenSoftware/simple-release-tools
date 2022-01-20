@@ -21,7 +21,7 @@
 [coverage]: https://img.shields.io/coveralls/TrigenSoftware/simple-github-release.svg
 [coverage-url]: https://coveralls.io/r/TrigenSoftware/simple-github-release
 
-Simple tool to create GitHub releases. It reads the latest notes from changelog and creates a release on the GitHub repository with them.
+A simple tool to create GitHub releases. It reads the latest notes from changelog and creates a release on the GitHub repository with them.
 
 ## Usage
 

@@ -2,7 +2,7 @@
   "name": "simple-github-release",
   "type": "module",
   "version": "1.0.0",
-  "description": "Simple tool to create GitHub releases.",
+  "description": "A simple tool to create GitHub releases.",
   "author": "dangreen",
   "license": "MIT",
   "repository": {
