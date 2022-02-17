@@ -2,7 +2,13 @@
   "testEnvironment": "node",
   "testRegex": "src/.*\\.spec\\.(jsx?|tsx?)$",
   "transform": {
-    "^.+\\.(t|j)sx?$": "@swc/jest"
+    "^.+\\.(t|j)sx?$": ["@swc/jest", {
+      "env": {
+        "targets": {
+          "node": 14
+        }
+      }
+    }]
   },
   "transformIgnorePatterns": ["/node_modules/(?!.*new-github-release-url)"],
   "collectCoverage": true,

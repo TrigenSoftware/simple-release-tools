@@ -1,12 +1,13 @@
 name: CI
 on:
-  push:
   pull_request:
+  push:
+    branches:
+      - main
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Running tests
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    name: Tests
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
@@ -24,7 +25,8 @@ jobs:
       - name: Run tests
         run: pnpm test
       - name: Collect coverage
-        uses: coverallsapp/github-action@master
+        uses: codecov/codecov-action@v2
         if: success()
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          files: ./coverage/lcov.info
+          fail_ci_if_error: true

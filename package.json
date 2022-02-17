@@ -12,17 +12,24 @@
   "bugs": {
     "url": "https://github.com/TrigenSoftware/simple-github-release/issues"
   },
-  "exports": "./src/index.ts",
+  "keywords": [
+    "github",
+    "release"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
   "bin": "./src/cli/index.ts",
+  "exports": "./src/index.ts",
   "publishConfig": {
     "exports": "./dist/index.js",
     "bin": "./dist/cli/index.js",
     "types": "./dist/index.d.ts",
     "directory": "package"
   },
-  "engines": {
-    "node": ">=14"
-  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "prepublishOnly": "pnpm test && pnpm build && del ./package && clean-publish",
     "postpublish": "del ./package",
@@ -82,8 +89,5 @@
     "standard-version": "^9.3.2",
     "typescript": "^4.4.3"
   },
-  "files": [
-    "dist"
-  ],
   "readme": ""
 }
