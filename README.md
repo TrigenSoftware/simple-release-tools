@@ -18,8 +18,8 @@
 [build]: https://img.shields.io/github/workflow/status/TrigenSoftware/simple-github-release/CI.svg
 [build-url]: https://github.com/TrigenSoftware/simple-github-release/actions
 
-[coverage]: https://img.shields.io/coveralls/TrigenSoftware/simple-github-release.svg
-[coverage-url]: https://coveralls.io/r/TrigenSoftware/simple-github-release
+[coverage]: https://img.shields.io/codecov/c/github/TrigenSoftware/simple-github-release.svg
+[coverage-url]: https://app.codecov.io/gh/TrigenSoftware/simple-github-release
 
 A simple tool to create GitHub releases. It reads the latest notes from changelog and creates a release on the GitHub repository with them.
 

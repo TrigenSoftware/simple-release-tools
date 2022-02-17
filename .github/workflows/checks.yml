@@ -2,14 +2,11 @@ name: Checks
 on:
   pull_request:
     branches:
-      - master
+      - main
 jobs:
   size:
     runs-on: ubuntu-latest
-    name: Checking size
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
-    env:
-      CI_JOB_NUMBER: 1
+    name: size-limit
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
@@ -22,10 +19,32 @@ jobs:
         with:
           node-version: 16
           cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
       - name: Check size
-        uses: andresz1/size-limit-action@v1
+        uses: andresz1/size-limit-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          skip_step: install
+  editorconfig:
+    runs-on: ubuntu-latest
+    name: editorconfig
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Check editorconfig
+        uses: editorconfig-checker/action-editorconfig-checker@v1
+  package-json:
+    runs-on: ubuntu-latest
+    name: package.json
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.1.0
+        with:
+          version: 6
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: 'pnpm'
+      - name: Check package.json files
+        run: pnpm --package=@trigen/lint-package-json dlx lint-package-json

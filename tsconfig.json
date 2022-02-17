@@ -17,6 +17,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": false,
     "inlineSourceMap": true,
+    "skipLibCheck": true,
     "baseUrl": ".",
     "lib": [
       "esnext"
