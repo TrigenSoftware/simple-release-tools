@@ -57,6 +57,10 @@ export class GitHubClient {
       })
       const [release] = response.data
 
+      if (!release) {
+        return null
+      }
+
       return {
         id: release.id,
         tag: release.tag_name
@@ -82,7 +86,7 @@ export class GitHubClient {
         releaseUrl: html_url
       }
     } catch (err) {
-      throw 'status' in err
+      throw err instanceof Error && 'status' in err
         ? new Error(`Can't create release, please check validity of access token`)
         : err
     }
@@ -111,7 +115,7 @@ export class GitHubClient {
         releaseUrl: html_url
       }
     } catch (err) {
-      throw 'status' in err
+      throw err instanceof Error && 'status' in err
         ? new Error(`Can't update release, please check validity of access token`)
         : err
     }

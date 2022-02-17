@@ -15,7 +15,7 @@ export function spawn(cmd: string, args: string[]) {
     const onData = (data: Buffer) => {
       output += data.toString()
     }
-    const onDone = (error) => {
+    const onDone = (error: unknown) => {
       if (error) {
         reject(
           error instanceof Error
