@@ -1,4 +1,4 @@
-import { octokit } from '../test/mocks/octokit'
+import { octokit } from '../test/mocks/octokit.mock'
 import { GitHubClient } from './github'
 import { parseGitUrl } from './git'
 

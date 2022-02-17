@@ -11,7 +11,7 @@ specifiers:
   '@swc/core': ^1.2.119
   '@swc/jest': ^0.2.14
   '@trigen/browserslist-config': ^8.0.0-alpha.5
-  '@trigen/eslint-config': ^8.0.0-alpha.7
+  '@trigen/eslint-config': ^8.0.0-alpha.12
   '@trigen/scripts': ^8.0.0-alpha.5
   '@types/git-url-parse': ^9.0.1
   '@types/jest': ^27.4.0
@@ -58,7 +58,7 @@ devDependencies:
   '@swc/core': 1.2.129
   '@swc/jest': 0.2.17_@swc+core@1.2.129
   '@trigen/browserslist-config': 8.0.0-alpha.5
-  '@trigen/eslint-config': 8.0.0-alpha.7_209095004219c66afdd3efd8ba84e886
+  '@trigen/eslint-config': 8.0.0-alpha.12_209095004219c66afdd3efd8ba84e886
   '@trigen/scripts': 8.0.0-alpha.9
   '@types/jest': 27.4.0
   '@types/node': 17.0.8
@@ -1299,8 +1299,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /@trigen/eslint-config/8.0.0-alpha.7_209095004219c66afdd3efd8ba84e886:
-    resolution: {integrity: sha512-QQr7m4bQXSRDVGNmqIFtdz09WljinQubC6EXacgmN5gZowzQ2e39bluEuTNxnrnLRWNegnEtAgCqDqvomSKRYQ==}
+  /@trigen/eslint-config/8.0.0-alpha.12_209095004219c66afdd3efd8ba84e886:
+    resolution: {integrity: sha512-h81AJAJ3XsYqDmGmc3COuhxzSnIvBUqQtaTrlAzRKk83JHoJbbF8QU/kP4AEQrpXYYq3Ps0qK+VyaWs+SycZ9w==}
     engines: {node: '>=10'}
     peerDependencies:
       '@babel/core': ^7.15.5
