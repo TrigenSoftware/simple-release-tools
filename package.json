@@ -67,7 +67,7 @@
     "@swc/core": "^1.2.119",
     "@swc/jest": "^0.2.14",
     "@trigen/browserslist-config": "^8.0.0-alpha.5",
-    "@trigen/eslint-config": "^8.0.0-alpha.12",
+    "@trigen/eslint-config": "^8.0.0-alpha.14",
     "@trigen/scripts": "^8.0.0-alpha.5",
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.8",

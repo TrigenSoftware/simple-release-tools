@@ -57,10 +57,6 @@ export class GitHubClient {
       })
       const [release] = response.data
 
-      if (!release) {
-        return null
-      }
-
       return {
         id: release.id,
         tag: release.tag_name

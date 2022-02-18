@@ -1,4 +1,3 @@
-/* eslint-disable import/no-default-export */
 import swc from 'rollup-plugin-swc'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import shebang from 'rollup-plugin-add-shebang'
