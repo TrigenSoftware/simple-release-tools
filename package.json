@@ -68,7 +68,7 @@
     "@trigen/browserslist-config": "^8.0.0-alpha.5",
     "@trigen/eslint-config": "8.0.0-alpha.22",
     "@trigen/scripts": "8.0.0-alpha.21",
-    "@types/node": "^17.0.8",
+    "@types/node": "^18.0.0",
     "@vitest/coverage-c8": "^0.25.2",
     "browserslist": "^4.19.1",
     "clean-publish": "^4.0.0",
