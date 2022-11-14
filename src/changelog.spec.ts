@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import fs from 'fs'
 import path from 'path'
 import { readLastChangesFromStream } from './changelog'
@@ -8,7 +9,7 @@ describe('changelog', () => {
       const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG_0.md'))
 
       expect(await readLastChangesFromStream(stream)).toMatchInlineSnapshot(`
-Array [
+[
   "8.0.0-alpha.2",
   "### Bug Fixes
 
@@ -29,7 +30,7 @@ Array [
       }
 
       expect(await readLastChangesFromStream(stream, options)).toMatchInlineSnapshot(`
-Array [
+[
   "8.0.0-alpha.2",
   "# [8.0.0-alpha.2](https://github.com/TrigenSoftware/scripts/compare/v8.0.0-alpha.1...v8.0.0-alpha.2) (2022-01-14)
 
@@ -49,7 +50,7 @@ Array [
       const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG_1.md'))
 
       expect(await readLastChangesFromStream(stream)).toMatchInlineSnapshot(`
-Array [
+[
   "0.0.1-1",
   "### Bug Fixes
 
@@ -63,7 +64,7 @@ Array [
       const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG_2.md'))
 
       expect(await readLastChangesFromStream(stream)).toMatchInlineSnapshot(`
-Array [
+[
   "1.0.0",
   "### Added
 - Version navigation.
