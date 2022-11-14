@@ -76,7 +76,7 @@
     "commitizen": "^4.2.4",
     "del-cli": "^4.0.1",
     "eslint": "^8.0.0",
-    "inquirer": "^8.2.0",
+    "inquirer": "^9.0.0",
     "jest": "^27.4.5",
     "nano-staged": "^0.5.0",
     "rollup": "^2.64.0",
