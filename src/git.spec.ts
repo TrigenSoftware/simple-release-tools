@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import { getRemoteUrl, parseGitUrl } from './git'
 
 describe('git', () => {

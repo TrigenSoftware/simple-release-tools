@@ -1,5 +1,4 @@
 {
   "withoutPublish": true,
-  "tempDir": "package",
-  "files": ["src"]
+  "tempDir": "package"
 }
