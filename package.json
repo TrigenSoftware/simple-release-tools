@@ -75,7 +75,6 @@
     "commitizen": "^4.2.4",
     "del-cli": "^5.0.0",
     "eslint": "^8.0.0",
-    "inquirer": "^9.0.0",
     "nano-staged": "^0.8.0",
     "rollup": "^2.64.0",
     "rollup-plugin-add-shebang": "^0.3.1",
@@ -86,6 +85,5 @@
     "typescript": "^4.4.3",
     "vite": "^3.2.3",
     "vitest": "^0.25.2"
-  },
-  "readme": ""
+  }
 }
