@@ -49,7 +49,7 @@
     "updateGitHooks": "simple-git-hooks"
   },
   "dependencies": {
-    "@octokit/rest": "^18.12.0",
+    "@octokit/rest": "^19.0.0",
     "@types/git-url-parse": "^9.0.1",
     "argue-cli": "^2.1.0",
     "git-url-parse": "^11.6.0",
