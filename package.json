@@ -67,7 +67,7 @@
     "@size-limit/file": "^7.0.5",
     "@swc/core": "^1.2.119",
     "@trigen/browserslist-config": "^8.0.0-alpha.5",
-    "@trigen/eslint-config": "8.0.0-alpha.22",
+    "@trigen/eslint-config": "8.0.0-alpha.23",
     "@trigen/scripts": "8.0.0-alpha.23",
     "@types/node": "^18.0.0",
     "@vitest/coverage-c8": "^0.25.2",
