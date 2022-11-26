@@ -9,7 +9,7 @@ specifiers:
   '@size-limit/file': ^7.0.5
   '@swc/core': ^1.2.119
   '@trigen/browserslist-config': ^8.0.0-alpha.5
-  '@trigen/eslint-config': 8.0.0-alpha.22
+  '@trigen/eslint-config': 8.0.0-alpha.23
   '@trigen/scripts': 8.0.0-alpha.23
   '@types/git-url-parse': ^9.0.1
   '@types/node': ^18.0.0
@@ -54,7 +54,7 @@ devDependencies:
   '@size-limit/file': 7.0.5_size-limit@7.0.5
   '@swc/core': 1.2.129
   '@trigen/browserslist-config': 8.0.0-alpha.5
-  '@trigen/eslint-config': 8.0.0-alpha.22_z3gsmzc3xu6w45afpmnsgzwvm4
+  '@trigen/eslint-config': 8.0.0-alpha.23_z3gsmzc3xu6w45afpmnsgzwvm4
   '@trigen/scripts': 8.0.0-alpha.23
   '@types/node': 18.11.9
   '@vitest/coverage-c8': 0.25.2
@@ -329,13 +329,13 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       ajv: 6.12.6
-      debug: 4.3.3
+      debug: 4.3.4
       espree: 9.3.0
       globals: 13.12.0
       ignore: 4.0.6
       import-fresh: 3.3.0
       js-yaml: 4.1.0
-      minimatch: 3.0.4
+      minimatch: 3.1.2
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
@@ -346,8 +346,8 @@ packages:
     engines: {node: '>=10.10.0'}
     dependencies:
       '@humanwhocodes/object-schema': 1.2.1
-      debug: 4.3.3
-      minimatch: 3.0.4
+      debug: 4.3.4
+      minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -713,8 +713,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /@trigen/eslint-config/8.0.0-alpha.22_z3gsmzc3xu6w45afpmnsgzwvm4:
-    resolution: {integrity: sha512-Fqxvz/WuQ/pSo1euCX9SgvgxYAqh2Dc2eV6mikuS/Jxa4qgFxLerjeoidJ8oy0O2J1Ss9kWBKVgtubuyZ4IpeQ==}
+  /@trigen/eslint-config/8.0.0-alpha.23_z3gsmzc3xu6w45afpmnsgzwvm4:
+    resolution: {integrity: sha512-9E+cdJMUFhUy7EyfXpctw8N4GecSVEh5ru5WPobYgJR446zXN6JuZgJXZJohCVwB3icMr3neEgs+nwIweMwtzA==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: '>=7.0.0'
@@ -1428,7 +1428,7 @@ packages:
     dev: true
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
   /concat-stream/2.0.0:
@@ -1914,7 +1914,7 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       find-up: 3.0.0
-      minimatch: 3.0.4
+      minimatch: 3.1.2
     dev: true
 
   /electron-to-chromium/1.4.45:
@@ -2485,7 +2485,7 @@ packages:
     dependencies:
       acorn: 8.8.1
       acorn-jsx: 5.3.2_acorn@8.8.1
-      eslint-visitor-keys: 3.1.0
+      eslint-visitor-keys: 3.3.0
     dev: true
 
   /esquery/1.4.0:
@@ -3352,7 +3352,7 @@ packages:
     dev: false
 
   /isarray/1.0.0:
-    resolution: {integrity: sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=}
+    resolution: {integrity: sha512-VLghIWNM6ELQzo7zwmcg0NmTVyWKYjvIeM83yjp0wRDTmUnrM678fQbcKBo6n2CJEF0szoG//ytg+TKla89ALQ==}
     dev: true
 
   /isarray/2.0.5:
@@ -4735,7 +4735,7 @@ packages:
     dev: true
 
   /strip-bom/3.0.0:
-    resolution: {integrity: sha1-IzTBjpx1n3vdVv3vfprj1YjmjtM=}
+    resolution: {integrity: sha512-vavAMRXOgBVNF6nyEEmL3DBK19iRpDcoIwW+swQ+CbGiu7lju6t+JklA1MHweoWtadgt4ISVUsXLyDq34ddcwA==}
     engines: {node: '>=4'}
     dev: true
 
