@@ -10,7 +10,7 @@ specifiers:
   '@swc/core': ^1.2.119
   '@trigen/browserslist-config': ^8.0.0-alpha.5
   '@trigen/eslint-config': 8.0.0-alpha.22
-  '@trigen/scripts': 8.0.0-alpha.21
+  '@trigen/scripts': 8.0.0-alpha.23
   '@types/git-url-parse': ^9.0.1
   '@types/node': ^18.0.0
   '@vitest/coverage-c8': ^0.25.2
@@ -55,7 +55,7 @@ devDependencies:
   '@swc/core': 1.2.129
   '@trigen/browserslist-config': 8.0.0-alpha.5
   '@trigen/eslint-config': 8.0.0-alpha.22_z3gsmzc3xu6w45afpmnsgzwvm4
-  '@trigen/scripts': 8.0.0-alpha.21
+  '@trigen/scripts': 8.0.0-alpha.23
   '@types/node': 18.11.9
   '@vitest/coverage-c8': 0.25.2
   browserslist: 4.19.1
@@ -737,8 +737,8 @@ packages:
       - typescript
     dev: true
 
-  /@trigen/scripts/8.0.0-alpha.21:
-    resolution: {integrity: sha512-DnPSiigGqIaKDK4Hm+NTGVdpGKF17dMmLdIAFtXDNH21MJ9i2Cp1svI5gvkBNTjD2qzFXYtAkrI9RJrS8KoVGA==}
+  /@trigen/scripts/8.0.0-alpha.23:
+    resolution: {integrity: sha512-0rKaW0C1gPB7X/8VM+0RrMHcq4tw+neR6Uzox8GERJUVfrd56OMGloauu5UuaHmKl93tpVfxRQF7UPElmShiGA==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
