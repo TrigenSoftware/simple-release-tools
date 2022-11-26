@@ -6,7 +6,7 @@ specifiers:
   '@commitlint/cz-commitlint': ^17.0.0
   '@octokit/rest': ^18.12.0
   '@rollup/plugin-node-resolve': ^13.1.3
-  '@size-limit/file': ^7.0.5
+  '@size-limit/file': ^8.0.0
   '@swc/core': ^1.2.119
   '@trigen/browserslist-config': ^8.0.0-alpha.5
   '@trigen/eslint-config': 8.0.0-alpha.23
@@ -51,7 +51,7 @@ devDependencies:
   '@commitlint/config-conventional': 17.2.0
   '@commitlint/cz-commitlint': 17.2.0_2w5737yq37ycwaspyqwvkpwnqq
   '@rollup/plugin-node-resolve': 13.1.3_rollup@2.64.0
-  '@size-limit/file': 7.0.5_size-limit@8.1.0
+  '@size-limit/file': 8.1.0_size-limit@8.1.0
   '@swc/core': 1.2.129
   '@trigen/browserslist-config': 8.0.0-alpha.5
   '@trigen/eslint-config': 8.0.0-alpha.23_z3gsmzc3xu6w45afpmnsgzwvm4
@@ -546,13 +546,13 @@ packages:
       rollup: 2.64.0
     dev: true
 
-  /@size-limit/file/7.0.5_size-limit@8.1.0:
-    resolution: {integrity: sha512-DqyuUkmCSHwML6GVmeRr0v6Ih/P3pwmCu6RDWh2QxdDSec1ZnShmFUmcC6rLQDX7KW5aCjK3cs5FNd22Eaqapw==}
-    engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
+  /@size-limit/file/8.1.0_size-limit@8.1.0:
+    resolution: {integrity: sha512-Ur+NgJSRHBnbQBrD8X2doxXYdBcVJsMxe2KfWrUmnZ6wYz09YKhQ1iYLqNztjf2yf/JEp00zp1vyhmimUQfUHQ==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     peerDependencies:
-      size-limit: 7.0.5
+      size-limit: 8.1.0
     dependencies:
-      semver: 7.3.5
+      semver: 7.3.7
       size-limit: 8.1.0
     dev: true
 
