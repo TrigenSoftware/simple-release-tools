@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Octokit } from '@octokit/rest'
 import newGithubReleaseUrl from 'new-github-release-url'
-import {
+import type {
   Repository,
   GitHubClientOptions,
   GitHubRelease
-} from './types'
+} from './types.js'
 
 /**
  * GitHub client for given repository.

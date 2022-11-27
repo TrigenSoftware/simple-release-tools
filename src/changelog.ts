@@ -1,6 +1,6 @@
 /* eslint-disable no-labels */
-import { Readable } from 'stream'
-import { Options } from './types'
+import type { Readable } from 'stream'
+import type { Options } from './types.js'
 
 /**
  * Read last changes from changelog.

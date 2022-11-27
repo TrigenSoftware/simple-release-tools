@@ -1,6 +1,6 @@
 import gitUrlParse from 'git-url-parse'
-import { Repository } from './types'
-import { spawn } from './spawn'
+import type { Repository } from './types.js'
+import { spawn } from './spawn.js'
 
 /**
  * Get latest git tag name.
