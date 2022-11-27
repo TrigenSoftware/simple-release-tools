@@ -32,8 +32,16 @@ body:
 
   - type: input
     attributes:
-      label: simple-github-release version
-      description: Which version of `simple-github-release` are you using?
+      label: package name
+      description: What package are you using?
+      placeholder: simple-github-release
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: package version
+      description: Which version of the package are you using?
       placeholder: v0.0.0
     validations:
       required: true

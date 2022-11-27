@@ -1,12 +1,16 @@
 import { describe, it, expect } from 'vitest'
+import { fileURLToPath } from 'url'
 import fs from 'fs'
 import path from 'path'
 import { readLastChangesFromStream } from './changelog.js'
 
+const dirname = fileURLToPath(new URL('.', import.meta.url))
+const mocks = path.join(dirname, '..', 'test', 'mocks')
+
 describe('changelog', () => {
   describe('readLastChangesFromStream', () => {
     it('should read last changes from file', async () => {
-      const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG_0.md'))
+      const stream = fs.createReadStream(path.join(mocks, 'CHANGELOG_0.md'))
 
       expect(await readLastChangesFromStream(stream)).toMatchInlineSnapshot(`
 [
@@ -24,7 +28,7 @@ describe('changelog', () => {
     })
 
     it('should read last changes from file with header', async () => {
-      const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG_0.md'))
+      const stream = fs.createReadStream(path.join(mocks, 'CHANGELOG_0.md'))
       const options = {
         includeTitle: true
       }
@@ -47,7 +51,7 @@ describe('changelog', () => {
     })
 
     it('should split titile without link', async () => {
-      const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG_1.md'))
+      const stream = fs.createReadStream(path.join(mocks, 'CHANGELOG_1.md'))
 
       expect(await readLastChangesFromStream(stream)).toMatchInlineSnapshot(`
 [
@@ -61,7 +65,7 @@ describe('changelog', () => {
     })
 
     it('should read keep a changelog', async () => {
-      const stream = fs.createReadStream(path.join('test', 'mocks', 'CHANGELOG_2.md'))
+      const stream = fs.createReadStream(path.join(mocks, 'CHANGELOG_2.md'))
 
       expect(await readLastChangesFromStream(stream)).toMatchInlineSnapshot(`
 [
