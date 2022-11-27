@@ -4,19 +4,19 @@ import { getRemoteUrl, parseGitUrl } from './git.js'
 describe('git', () => {
   describe('getRemoteUrl', () => {
     it('should get remote url', async () => {
-      expect(['git@github.com:TrigenSoftware/simple-github-release.git', 'https://github.com/TrigenSoftware/simple-github-release']).toContain(await getRemoteUrl())
+      expect(['git@github.com:TrigenSoftware/simple-release-tools.git', 'https://github.com/TrigenSoftware/simple-release-tools']).toContain(await getRemoteUrl())
     })
   })
 
   describe('parseGitUrl', () => {
     it('should parse git url', () => {
-      expect(parseGitUrl('git@github.com:TrigenSoftware/simple-github-release.git')).toEqual({
+      expect(parseGitUrl('git@github.com:TrigenSoftware/simple-release-tools.git')).toEqual({
         host: 'github.com',
         owner: 'TrigenSoftware',
-        project: 'simple-github-release',
+        project: 'simple-release-tools',
         protocol: 'ssh',
-        remote: 'git@github.com:TrigenSoftware/simple-github-release.git',
-        repository: 'TrigenSoftware/simple-github-release'
+        remote: 'git@github.com:TrigenSoftware/simple-release-tools.git',
+        repository: 'TrigenSoftware/simple-release-tools'
       })
     })
   })
