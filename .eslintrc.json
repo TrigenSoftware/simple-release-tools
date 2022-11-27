@@ -17,5 +17,8 @@
     "no-console": "off",
     "no-template-curly-in-string": "off",
     "import/dynamic-import-chunkname": "off"
-  }
+  },
+  "ignorePatterns": [
+    "rollup.config.js"
+  ]
 }
