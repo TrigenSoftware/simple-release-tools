@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
-import { octokit } from '../test/mocks/octokit.mock'
-import { GitHubClient } from './github'
-import { parseGitUrl } from './git'
+import { octokit } from '../test/mocks/octokit.mock.js'
+import { GitHubClient } from './github.js'
+import { parseGitUrl } from './git.js'
 
 describe('github', () => {
   describe('GitHubClient', () => {

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import fs from 'fs'
 import path from 'path'
-import { readLastChangesFromStream } from './changelog'
+import { readLastChangesFromStream } from './changelog.js'
 
 describe('changelog', () => {
   describe('readLastChangesFromStream', () => {

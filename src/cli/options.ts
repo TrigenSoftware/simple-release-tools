@@ -4,7 +4,7 @@ import {
   end
 } from 'argue-cli'
 import { lilconfig } from 'lilconfig'
-import { Options } from '../index.js'
+import type { Options } from '../index.js'
 
 const defaultOptions: Options = {
   includeTitle: false,

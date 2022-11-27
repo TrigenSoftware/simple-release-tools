@@ -1,13 +1,13 @@
 import open from 'open'
 import { GitHubClient } from '../index.js'
-import { getOptions } from './options'
-import { getContext } from './context'
-import { getReleaseData } from './release'
+import { getOptions } from './options.js'
+import { getContext } from './context.js'
+import { getReleaseData } from './release.js'
 import {
   warn,
   link,
   error
-} from './console'
+} from './console.js'
 
 void (async () => {
   const { GITHUB_TOKEN } = process.env
