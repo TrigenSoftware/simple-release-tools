@@ -8,11 +8,11 @@
   "funding": "https://ko-fi.com/dangreen",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TrigenSoftware/simple-github-release.git",
+    "url": "https://github.com/TrigenSoftware/simple-release-tools.git",
     "directory": "packages/simple-github-release"
   },
   "bugs": {
-    "url": "https://github.com/TrigenSoftware/simple-github-release/issues"
+    "url": "https://github.com/TrigenSoftware/simple-release-tools/issues"
   },
   "keywords": [
     "github",
@@ -35,7 +35,7 @@
   "scripts": {
     "clear:package": "del ./package",
     "clear": "del ./package ./dist ./coverage",
-    "prepublishOnly": "run test build clear:package clean-publish",
+    "prepublishOnly": "run build clear:package clean-publish",
     "postpublish": "pnpm clear:package",
     "emitDeclarations": "tsc --emitDeclarationOnly",
     "build": "run -p [ rollup -c ] emitDeclarations",
