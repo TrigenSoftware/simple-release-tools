@@ -36,7 +36,7 @@
     "@commitlint/config-conventional": "^17.0.0",
     "@commitlint/config-pnpm-scopes": "^17.3.0",
     "@commitlint/cz-commitlint": "^17.0.0",
-    "@pnpm/find-workspace-packages": "^5.0.10",
+    "@pnpm/find-workspace-packages": "^6.0.0",
     "@pnpm/logger": "^5.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@size-limit/file": "^8.0.0",
