@@ -17,7 +17,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
@@ -36,7 +36,7 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v3
       - name: Check editorconfig
-        uses: editorconfig-checker/action-editorconfig-checker@v1
+        uses: editorconfig-checker/action-editorconfig-checker@main
   package-json:
     runs-on: ubuntu-latest
     name: package.json
@@ -46,7 +46,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:

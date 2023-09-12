@@ -39,7 +39,10 @@
     "postpublish": "pnpm clear:package",
     "emitDeclarations": "tsc --emitDeclarationOnly",
     "build": "run -p [ rollup -c ] emitDeclarations",
-    "test:size": "size-limit"
+    "lint": "eslint --parser-options tsconfigRootDir:. '**/*.{js,jsx,ts,tsx}'",
+    "test:unit": "vitest run --coverage",
+    "test:size": "size-limit",
+    "test": "run -p lint test:unit"
   },
   "dependencies": {
     "@octokit/rest": "^19.0.0",

@@ -5,16 +5,33 @@ on:
     branches:
       - main
 jobs:
+  list-packages:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - id: set-matrix
+        run: node -e "console.log('::set-output name=matrix::' + JSON.stringify(fs.readdirSync('packages')))"
   test:
     runs-on: ubuntu-latest
-    name: Tests
+    needs: list-packages
+    strategy:
+      matrix:
+        package: ${{ fromJson(needs.list-packages.outputs.matrix) }}
+    name: ${{ matrix.package }} tests
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
@@ -23,10 +40,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Run tests
-        run: pnpm test
+        run: pnpm --filter ${{ matrix.package }} test
       - name: Collect coverage
         uses: codecov/codecov-action@v3
         if: success()
         with:
-          files: ./coverage/lcov.info
-          fail_ci_if_error: true
+          flags: ${{ matrix.package }}
+          files: ./packages/${{ matrix.package }}/coverage/lcov.info
