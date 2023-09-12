@@ -5,8 +5,9 @@ on:
     branches:
       - main
 jobs:
-  list-packages:
+  list-workspaces:
     runs-on: ubuntu-latest
+    name: List workspaces
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
@@ -20,11 +21,11 @@ jobs:
         run: node -e "console.log('::set-output name=matrix::' + JSON.stringify(fs.readdirSync('packages')))"
   test:
     runs-on: ubuntu-latest
-    needs: list-packages
+    needs: list-workspaces
     strategy:
       matrix:
-        package: ${{ fromJson(needs.list-packages.outputs.matrix) }}
-    name: ${{ matrix.package }} tests
+        workspace: ${{ fromJson(needs.list-workspaces.outputs.matrix) }}
+    name: ${{ matrix.workspace }} tests
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
@@ -40,10 +41,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Run tests
-        run: pnpm --filter ${{ matrix.package }} test
+        run: pnpm --filter ${{ matrix.workspace }} test
       - name: Collect coverage
         uses: codecov/codecov-action@v3
         if: success()
         with:
-          flags: ${{ matrix.package }}
-          files: ./packages/${{ matrix.package }}/coverage/lcov.info
+          files: ./packages/${{ matrix.workspace }}/coverage/lcov.info
+          name: ${{ matrix.workspace }}
+          flags: ${{ matrix.workspace }}

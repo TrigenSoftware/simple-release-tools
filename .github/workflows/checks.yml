@@ -4,13 +4,27 @@ on:
     branches:
       - main
 jobs:
+  list-workspaces:
+    runs-on: ubuntu-latest
+    name: List workspaces
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - id: set-matrix
+        run: node -e "console.log('::set-output name=matrix::' + JSON.stringify(fs.readdirSync('packages')))"
   size:
     runs-on: ubuntu-latest
+    needs: list-workspaces
     strategy:
       matrix:
-        workspace:
-          - simple-github-release
-    name: size-limit
+        workspace: ${{ fromJson(needs.list-workspaces.outputs.matrix) }}
+    name: ${{ matrix.workspace }} size-limit
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
