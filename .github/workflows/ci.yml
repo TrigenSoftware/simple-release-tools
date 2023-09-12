@@ -11,7 +11,7 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
@@ -27,7 +27,7 @@ jobs:
     name: ${{ matrix.package }} tests
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
