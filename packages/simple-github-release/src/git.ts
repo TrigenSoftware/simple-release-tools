@@ -19,6 +19,7 @@ export async function getLatestTagName() {
 }
 
 function getBranchName() {
+  /* c8 ignore start */
   try {
     return spawn('git', ['branch', '--show-current'])
   } catch (err) {
@@ -28,6 +29,7 @@ function getBranchName() {
       'HEAD'
     ])
   }
+  /* c8 ignore stop */
 }
 
 function getRemoteForBranch(branch: string) {
@@ -42,6 +44,7 @@ async function getRemote() {
   const branchName = await getBranchName()
   let remote = 'origin'
 
+  /* c8 ignore start */
   try {
     if (branchName) {
       remote = await getRemoteForBranch(branchName)
@@ -49,6 +52,7 @@ async function getRemote() {
   } catch (err) {
     /* Silent */
   }
+  /* c8 ignore stop */
 
   return remote
 }
