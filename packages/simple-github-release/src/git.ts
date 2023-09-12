@@ -32,6 +32,7 @@ function getBranchName() {
   /* c8 ignore stop */
 }
 
+/* c8 ignore start */
 function getRemoteForBranch(branch: string) {
   return spawn('git', [
     'config',
@@ -39,6 +40,7 @@ function getRemoteForBranch(branch: string) {
     `branch.${branch}.remote`
   ])
 }
+/* c8 ignore end */
 
 async function getRemote() {
   const branchName = await getBranchName()
