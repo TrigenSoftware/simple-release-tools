@@ -43,7 +43,7 @@ jobs:
       - name: Run tests
         run: pnpm --filter ${{ matrix.workspace }} test
       - name: Collect coverage
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         if: success()
         with:
           files: ./packages/${{ matrix.workspace }}/coverage/lcov.info
