@@ -1,10 +1,15 @@
 # simple-github-release
 
+[![ESM-only package][package]][package-url]
 [![NPM version][npm]][npm-url]
 [![Node version][node]][node-url]
 [![Dependencies status][deps]][deps-url]
+[![Install size][size]][size-url]
 [![Build status][build]][build-url]
 [![Coverage status][coverage]][coverage-url]
+
+[package]: https://img.shields.io/badge/package-ESM--only-ffe536.svg
+[package-url]: https://nodejs.org/api/esm.html
 
 [npm]: https://img.shields.io/npm/v/simple-github-release.svg
 [npm-url]: https://www.npmjs.com/package/simple-github-release
@@ -15,11 +20,14 @@
 [deps]: https://img.shields.io/librariesio/release/npm/simple-github-release
 [deps-url]: https://libraries.io/npm/simple-github-release/tree
 
+[size]: https://packagephobia.com/badge?p=simple-github-release
+[size-url]: https://packagephobia.com/result?p=simple-github-release
+
 [build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release-tools/ci.yml?branch=main
 [build-url]: https://github.com/TrigenSoftware/simple-release-tools/actions
 
-[coverage]: https://img.shields.io/codecov/c/github/TrigenSoftware/simple-release-tools.svg
-[coverage-url]: https://app.codecov.io/gh/TrigenSoftware/simple-release-tools
+[coverage]: https://img.shields.io/codecov/c/github/TrigenSoftware/simple-release-tools.svg?flag=simple-github-release
+[coverage-url]: https://app.codecov.io/gh/TrigenSoftware/simple-release-tools/tree/main/packages%2Fsimple-github-release
 
 A simple tool to create GitHub releases. It reads the latest notes from changelog and creates a release on the GitHub repository with them.
 
