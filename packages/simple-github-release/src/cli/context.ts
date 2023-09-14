@@ -1,7 +1,9 @@
 import fs from 'fs'
-import {
+import type {
   Options,
-  LocalContext,
+  LocalContext
+} from '../index.js'
+import {
   getRemoteUrl,
   getLatestTagName,
   parseGitUrl,

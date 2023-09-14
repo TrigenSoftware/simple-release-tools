@@ -22,6 +22,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Run commitlint
-        uses: wagoid/commitlint-github-action@v5
-        env:
-          NODE_PATH: ${{ github.workspace }}/node_modules
+        run: pnpm commitlint --from=HEAD~1
