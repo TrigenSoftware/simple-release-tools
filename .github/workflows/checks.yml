@@ -43,6 +43,29 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           package_manager: pnpm
           directory: packages/${{ matrix.workspace }}/
+  typings:
+    runs-on: ubuntu-latest
+    needs: list-workspaces
+    strategy:
+      matrix:
+        workspace: ${{ fromJson(needs.list-workspaces.outputs.matrix) }}
+    name: ${{ matrix.workspace }} typings
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Check typings
+        run: pnpm --filter ${{ matrix.workspace }} test:types
   editorconfig:
     runs-on: ubuntu-latest
     name: editorconfig

@@ -36,10 +36,10 @@ A simple tool to create GitHub releases. It reads the latest notes from changelo
 1. Install
 
 ```bash
-# yarn
-yarn add -D simple-github-release
 # pnpm
 pnpm add -D simple-github-release
+# yarn
+yarn add -D simple-github-release
 # npm
 npm i -D simple-github-release
 ```
