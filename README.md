@@ -7,7 +7,7 @@
 [node]: https://img.shields.io/node/v/simple-github-release.svg
 [node-url]: https://nodejs.org
 
-[build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release-tools/ci.yml?branch=main
+[build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release-tools/tests.yml?branch=main
 [build-url]: https://github.com/TrigenSoftware/simple-release-tools/actions
 
 [coverage]: https://img.shields.io/codecov/c/github/TrigenSoftware/simple-release-tools.svg

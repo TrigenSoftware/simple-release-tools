@@ -23,7 +23,7 @@
 [size]: https://packagephobia.com/badge?p=simple-github-release
 [size-url]: https://packagephobia.com/result?p=simple-github-release
 
-[build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release-tools/ci.yml?branch=main
+[build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release-tools/tests.yml?branch=main
 [build-url]: https://github.com/TrigenSoftware/simple-release-tools/actions
 
 [coverage]: https://img.shields.io/codecov/c/github/TrigenSoftware/simple-release-tools.svg?flag=simple-github-release
