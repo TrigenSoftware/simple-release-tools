@@ -48,7 +48,7 @@
     "@octokit/rest": "^20.0.0",
     "@types/git-url-parse": "^9.0.1",
     "argue-cli": "^2.1.0",
-    "git-url-parse": "^13.0.0",
+    "git-url-parse": "^14.0.0",
     "lilconfig": "^3.0.0",
     "new-github-release-url": "^2.0.0",
     "open": "^9.0.0",
