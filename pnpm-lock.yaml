@@ -30,8 +30,8 @@ importers:
         specifier: ^1.3.20
         version: 1.3.20
       '@trigen/browserslist-config':
-        specifier: 8.0.0-alpha.27
-        version: 8.0.0-alpha.27
+        specifier: 8.0.0-alpha.30
+        version: 8.0.0-alpha.30
       '@trigen/eslint-config':
         specifier: 8.0.0-alpha.29
         version: 8.0.0-alpha.29(eslint@8.28.0)(typescript@5.2.2)
@@ -1457,8 +1457,8 @@ packages:
       '@swc/core-win32-x64-msvc': 1.3.20
     dev: true
 
-  /@trigen/browserslist-config@8.0.0-alpha.27:
-    resolution: {integrity: sha512-bRn08aBW+MOKJf0R5LyTR6ie2NW5f1jr+NUyMtOGrIs2VNAcayIKCxRiAltfnVcDgvzeLcu2gL7RmAA6mEpaFA==}
+  /@trigen/browserslist-config@8.0.0-alpha.30:
+    resolution: {integrity: sha512-hFaQT8GZtYO5jbtRUMI4kyjkDbFWNKcgTqjkNgoHoZwvDTN4JTCegjOTr00XH64K5SMxbVs7iv6SOE36G5NK+w==}
     engines: {node: '>=10'}
     dev: true
 
