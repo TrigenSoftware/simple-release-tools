@@ -55,7 +55,7 @@
     "rollup-plugin-swc3": "^0.10.0",
     "simple-git-hooks": "^2.7.0",
     "size-limit": "^11.0.0",
-    "standard-version": "^9.3.2",
+    "commit-and-tag-version": "^9.5.0",
     "typescript": "^5.0.0",
     "vite": "^5.0.0",
     "vitest": "^0.34.4"
