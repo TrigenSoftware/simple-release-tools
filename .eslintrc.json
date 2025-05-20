@@ -15,7 +15,6 @@
     "import/dynamic-import-chunkname": "off"
   },
   "ignorePatterns": [
-    "packages/*/dist/**/*",
-    "rollup.config.js"
+    "packages/*/dist/**/*"
   ]
 }

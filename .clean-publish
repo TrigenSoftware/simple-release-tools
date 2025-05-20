@@ -1,4 +1,6 @@
 {
   "withoutPublish": true,
-  "tempDir": "package"
+  "tempDir": "package",
+  "fields": ["scripts", "publishConfig"],
+  "files": ["**/*.spec.{js,ts}"]
 }

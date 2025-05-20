@@ -6,6 +6,6 @@
   ],
   "parserOptions": {
     "tsconfigRootDir": "./packages/simple-github-release",
-    "project": ["./tsconfig.json", "./test/tsconfig.json"]
+    "project": ["./tsconfig.json"]
   }
 }
