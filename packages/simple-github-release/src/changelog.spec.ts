@@ -68,23 +68,23 @@ describe('changelog', () => {
       const stream = fs.createReadStream(path.join(mocks, 'CHANGELOG_2.md'))
 
       expect(await readLastChangesFromStream(stream)).toMatchInlineSnapshot(`
-[
-  "1.0.0",
-  "### Added
-- Version navigation.
-- Links to latest released version in previous versions.
-- \\"Why keep a changelog?\\" section.
+        [
+          "1.0.0",
+          "### Added
+        - Version navigation.
+        - Links to latest released version in previous versions.
+        - "Why keep a changelog?" section.
 
-### Changed
-- Start using \\"changelog\\" over \\"change log\\" since it's the common usage.
-- Start versioning based on the current English version at 0.3.0 to help
-translation authors keep things up-to-date.
+        ### Changed
+        - Start using "changelog" over "change log" since it's the common usage.
+        - Start versioning based on the current English version at 0.3.0 to help
+        translation authors keep things up-to-date.
 
-### Removed
-- Section about \\"changelog\\" vs \\"CHANGELOG\\".
-",
-]
-`)
+        ### Removed
+        - Section about "changelog" vs "CHANGELOG".
+        ",
+        ]
+      `)
     })
   })
 })
