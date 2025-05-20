@@ -32,10 +32,10 @@
     "updateGitHooks": "simple-git-hooks"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.0.0",
-    "@commitlint/config-conventional": "^18.0.0",
-    "@commitlint/config-pnpm-scopes": "^18.0.0",
-    "@commitlint/cz-commitlint": "^18.0.0",
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
+    "@commitlint/config-pnpm-scopes": "^19.0.0",
+    "@commitlint/cz-commitlint": "^19.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@size-limit/file": "^11.0.0",
     "@swc/core": "^1.3.20",
