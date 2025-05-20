@@ -23,6 +23,7 @@ function getOptionsFromArgv(): Options {
     option('host', String),
     option('changelogLocation', String),
     option('releaseName', String),
+    option('tag', String),
     option('draft', Boolean),
     option('prerelease', Boolean),
     option('auto', Boolean),

@@ -5,13 +5,15 @@ import type {
 } from '../index.js'
 
 export function getReleaseData(options: Options, context: LocalContext): GitHubRelease {
+  const tag = options.tag || context.tag
+
   return {
     name: options.releaseName
       ? options.releaseName
-        .replace('${tag}', context.tag)
+        .replace('${tag}', tag)
         .replace('${version}', context.version)
-      : context.tag,
-    tag: context.tag,
+      : tag,
+    tag,
     notes: context.notes,
     draft: options.draft,
     prerelease: options.prerelease,

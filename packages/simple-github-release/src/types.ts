@@ -34,6 +34,11 @@ export interface Options {
    */
   releaseName?: string
   /**
+   * Override release tag.
+   * @default Latest git tag.
+   */
+  tag?: string
+  /**
    * Create release draft.
    * @default false
    */
