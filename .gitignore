@@ -21,8 +21,15 @@ node_modules
 
 # Compiled dist
 dist
-package
+packages/*/package
 build
 
 # Env files
 .env
+
+# IDE files
+.idea
+.vscode
+
+# Temporary files
+tmp
