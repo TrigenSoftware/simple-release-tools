@@ -36,7 +36,7 @@
     "@trigen/eslint-config": "8.0.0-alpha.33",
     "@trigen/scripts": "8.0.0-alpha.33",
     "@types/node": "^20.0.0",
-    "@vitest/coverage-v8": "^0.34.4",
+    "@vitest/coverage-v8": "^3.0.0",
     "clean-publish": "^5.0.0",
     "commitizen": "^4.2.4",
     "del-cli": "^6.0.0",
@@ -45,6 +45,6 @@
     "simple-git-hooks": "^2.7.0",
     "typescript": "5.2.2",
     "vite": "^6.0.0",
-    "vitest": "^0.34.4"
+    "vitest": "^3.0.0"
   }
 }
