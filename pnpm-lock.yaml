@@ -60,6 +60,9 @@ importers:
         specifier: ^3.0.0
         version: 3.1.4(@types/node@20.17.49)(jiti@2.4.2)
 
+  packages/hosted-git-info:
+    publishDirectory: package
+
   packages/simple-github-release:
     dependencies:
       '@octokit/rest':
