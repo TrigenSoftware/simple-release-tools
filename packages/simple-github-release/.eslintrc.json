@@ -7,5 +7,9 @@
   "parserOptions": {
     "tsconfigRootDir": "./packages/simple-github-release",
     "project": ["./tsconfig.json"]
+  },
+  "rules": {
+    "no-template-curly-in-string": "off",
+    "no-console": "off"
   }
 }
