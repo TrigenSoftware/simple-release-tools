@@ -70,9 +70,6 @@ export interface Repository {
   host: string
   owner: string
   project: string
-  protocol: string
-  remote: string
-  repository: string
 }
 
 export interface LocalContext {

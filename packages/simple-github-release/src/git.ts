@@ -1,4 +1,4 @@
-import gitUrlParse from 'git-url-parse'
+import { parseHostedGitUrl } from '@simple-libs/hosted-git-info'
 import type { Repository } from './types.js'
 import { spawn } from './spawn.js'
 
@@ -101,26 +101,12 @@ export async function getRemoteUrl() {
  */
 export function parseGitUrl(remoteUrl: string): Repository {
   const url = (remoteUrl || '').replace(/\\/g, '/')
-  const parsedUrl = gitUrlParse(url)
-  const {
-    protocol,
-    resource: host,
-    href: remote,
-    owner: parsedOwner,
-    name: project
-  } = parsedUrl
-  const owner = protocol === 'file'
-    ? parsedUrl.owner.split('/').pop() ?? ''
-    : parsedOwner
-  const repository = `${owner}/${project}`
+  const parsedUrl = parseHostedGitUrl(url)
 
   return {
-    host,
-    owner,
-    project,
-    protocol,
-    remote,
-    repository
+    host: parsedUrl?.host?.replace(/^.*:\/\//, '') || '',
+    owner: parsedUrl?.owner || '',
+    project: parsedUrl?.project || ''
   }
 }
 

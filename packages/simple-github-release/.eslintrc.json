@@ -9,7 +9,7 @@
     "project": ["./tsconfig.json"]
   },
   "rules": {
-    "no-template-curly-in-string": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "no-template-curly-in-string": "off"
   }
 }

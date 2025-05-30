@@ -126,10 +126,11 @@ export class GitHubClient {
     const { tag } = release
     const {
       host,
-      repository
+      owner,
+      project
     } = this.repo
 
-    return `https://${host}/${repository}/releases/tag/${tag}`
+    return `https://${host}/${owner}/${project}/releases/tag/${tag}`
   }
 
   /**
