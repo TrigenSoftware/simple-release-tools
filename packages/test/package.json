@@ -1,0 +1,38 @@
+{
+  "name": "test",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "description": "A test utilities.",
+  "author": {
+    "name": "Dan Onoshko",
+    "email": "danon0404@gmail.com",
+    "url": "https://github.com/dangreen"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/TrigenSoftware/simple-release-tools/tree/master/packages/test#readme",
+  "funding": "https://ko-fi.com/dangreen",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TrigenSoftware/simple-release-tools.git",
+    "directory": "packages/test"
+  },
+  "bugs": {
+    "url": "https://github.com/TrigenSoftware/simple-release-tools/issues"
+  },
+  "keywords": [],
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": "./src/index.ts",
+  "scripts": {
+    "lint": "eslint --parser-options tsconfigRootDir:. '**/*.{js,ts}'",
+    "test:types": "tsc --noEmit",
+    "test": "run -p lint test:types"
+  },
+  "dependencies": {
+    "@conventional-changelog/git-client": "^2.4.0",
+    "@simple-libs/stream-utils": "^1.0.0",
+    "@types/node": "^22.0.0"
+  }
+}

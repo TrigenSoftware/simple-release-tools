@@ -1,11 +1,7 @@
-# simple-release-tools
+# simple-release
 
-[![Node version][node]][node-url]
 [![Build status][build]][build-url]
 [![Coverage status][coverage]][coverage-url]
-
-[node]: https://img.shields.io/node/v/simple-github-release.svg
-[node-url]: https://nodejs.org
 
 [build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release-tools/tests.yml?branch=main
 [build-url]: https://github.com/TrigenSoftware/simple-release-tools/actions
@@ -13,7 +9,7 @@
 [coverage]: https://img.shields.io/codecov/c/github/TrigenSoftware/simple-release-tools.svg
 [coverage-url]: https://app.codecov.io/gh/TrigenSoftware/simple-release-tools
 
-A simple tools to automate releases.
+A simple tool to release projects with monorepo support.
 
 ## Available tools
 
