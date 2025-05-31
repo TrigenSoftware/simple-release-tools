@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "@trigen/eslint-config/typescript",
+    "@trigen/eslint-config/typescript-requiring-type-checking",
+    "@trigen/eslint-config/jest"
+  ],
+  "parserOptions": {
+    "tsconfigRootDir": "./packages/github-release",
+    "project": ["./tsconfig.json"]
+  },
+  "rules": {
+    "@typescript-eslint/naming-convention": "off",
+    "prefer-destructuring": "off"
+  }
+}
