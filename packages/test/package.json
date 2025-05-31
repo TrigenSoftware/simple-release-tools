@@ -1,7 +1,7 @@
 {
   "name": "test",
-  "private": true,
   "type": "module",
+  "private": true,
   "version": "0.0.0",
   "description": "A test utilities.",
   "author": {
@@ -10,15 +10,15 @@
     "url": "https://github.com/dangreen"
   },
   "license": "MIT",
-  "homepage": "https://github.com/TrigenSoftware/simple-release-tools/tree/master/packages/test#readme",
+  "homepage": "https://github.com/TrigenSoftware/simple-release/tree/master/packages/test#readme",
   "funding": "https://ko-fi.com/dangreen",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TrigenSoftware/simple-release-tools.git",
+    "url": "https://github.com/TrigenSoftware/simple-release.git",
     "directory": "packages/test"
   },
   "bugs": {
-    "url": "https://github.com/TrigenSoftware/simple-release-tools/issues"
+    "url": "https://github.com/TrigenSoftware/simple-release/issues"
   },
   "keywords": [],
   "engines": {

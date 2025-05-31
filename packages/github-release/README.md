@@ -23,11 +23,11 @@
 [size]: https://packagephobia.com/badge?p=@simple-release/github-release
 [size-url]: https://packagephobia.com/result?p=@simple-release/github-release
 
-[build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release-tools/tests.yml?branch=main
-[build-url]: https://github.com/TrigenSoftware/simple-release-tools/actions
+[build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release/tests.yml?branch=main
+[build-url]: https://github.com/TrigenSoftware/simple-release/actions
 
-[coverage]: https://coveralls.io/repos/github/TrigenSoftware/simple-release-tools/badge.svg?branch=main
-[coverage-url]: https://coveralls.io/github/TrigenSoftware/simple-release-tools?branch=main
+[coverage]: https://coveralls.io/repos/github/TrigenSoftware/simple-release/badge.svg?branch=main
+[coverage-url]: https://coveralls.io/github/TrigenSoftware/simple-release?branch=main
 
 A github release addon for simple-release.
 

@@ -23,11 +23,11 @@
 [size]: https://packagephobia.com/badge?p=simple-github-release
 [size-url]: https://packagephobia.com/result?p=simple-github-release
 
-[build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release-tools/tests.yml?branch=main
-[build-url]: https://github.com/TrigenSoftware/simple-release-tools/actions
+[build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release/tests.yml?branch=main
+[build-url]: https://github.com/TrigenSoftware/simple-release/actions
 
-[coverage]: https://img.shields.io/codecov/c/github/TrigenSoftware/simple-release-tools.svg?flag=simple-github-release
-[coverage-url]: https://app.codecov.io/gh/TrigenSoftware/simple-release-tools/tree/main/packages%2Fsimple-github-release
+[coverage]: https://img.shields.io/codecov/c/github/TrigenSoftware/simple-release.svg?flag=simple-github-release
+[coverage-url]: https://app.codecov.io/gh/TrigenSoftware/simple-release/tree/main/packages%2Fsimple-github-release
 
 A simple tool to create GitHub releases. It reads the latest notes from changelog and creates a release on the GitHub repository with them.
 
