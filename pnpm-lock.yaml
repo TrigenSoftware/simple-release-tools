@@ -112,6 +112,26 @@ importers:
         version: link:../test
     publishDirectory: package
 
+  packages/pnpm:
+    dependencies:
+      '@simple-libs/child-process-utils':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@simple-release/core':
+        specifier: workspace:^
+        version: link:../core
+      fast-glob:
+        specifier: ^3.3.3
+        version: 3.3.3
+      read-yaml-file:
+        specifier: ^2.1.0
+        version: 2.1.0
+    devDependencies:
+      test:
+        specifier: workspace:^
+        version: link:../test
+    publishDirectory: package
+
   packages/simple-github-release:
     dependencies:
       '@octokit/rest':
