@@ -1,0 +1,37 @@
+{
+  "name": "ci",
+  "type": "module",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A ci utilities.",
+  "author": {
+    "name": "Dan Onoshko",
+    "email": "danon0404@gmail.com",
+    "url": "https://github.com/dangreen"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/TrigenSoftware/simple-release/tree/master/packages/ci#readme",
+  "funding": "https://ko-fi.com/dangreen",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TrigenSoftware/simple-release.git",
+    "directory": "packages/ci"
+  },
+  "bugs": {
+    "url": "https://github.com/TrigenSoftware/simple-release/issues"
+  },
+  "keywords": [],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "lint": "eslint --parser-options tsconfigRootDir:. '**/*.{js,ts}'",
+    "test:types": "tsc --noEmit",
+    "test": "run -p lint test:types"
+  },
+  "dependencies": {
+    "@actions/github": "^6.0.1",
+    "@simple-release/config": "workspace:^",
+    "@simple-release/github-action": "workspace:^"
+  }
+}
