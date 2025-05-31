@@ -30,8 +30,8 @@ importers:
         specifier: ^3.0.0
         version: 3.1.4(vitest@3.1.4(@types/node@22.15.23)(jiti@2.4.2))
       clean-publish:
-        specifier: 5.1.0
-        version: 5.1.0
+        specifier: 5.2.1
+        version: 5.2.1
       commitizen:
         specifier: ^4.2.4
         version: 4.3.1(@types/node@22.15.23)(typescript@5.2.2)
@@ -1165,8 +1165,8 @@ packages:
     resolution: {integrity: sha512-OAlb+T7V4Op9OwdkjmguYRqncdlx5JiofwOAUkmTF+jNdHwzTaTs4sRAGpzLF3oOz5xAyDGrPgeIDFQmDOTiJw==}
     engines: {node: '>= 16'}
 
-  clean-publish@5.1.0:
-    resolution: {integrity: sha512-Gbz8x7sL/sn0j+2B+yYEumD17WmPT6pHLN+A5nhcd0Sdh86EYblQleU+dUIICXVFalFMFBdW2aGynrVJ6k1u4Q==}
+  clean-publish@5.2.1:
+    resolution: {integrity: sha512-NbVdbx/1NRxaD7nB7v6cPUGB2oVSV1QPwqswvI3W6Ii2A1gcPw6EnDV+xNcUTz6jc8e0bFr6Q08Mc0kSIc6DqQ==}
     engines: {node: '>= 18.0.0'}
     hasBin: true
 
@@ -4168,7 +4168,7 @@ snapshots:
 
   check-error@2.1.1: {}
 
-  clean-publish@5.1.0:
+  clean-publish@5.2.1:
     dependencies:
       cross-spawn: 7.0.6
       fast-glob: 3.3.3
