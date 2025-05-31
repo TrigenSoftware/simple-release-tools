@@ -23,6 +23,8 @@ node_modules
 dist
 packages/*/package
 build
+!.github/actions/*/dist
+!.github/actions/*/dist/node_modules
 
 # Env files
 .env

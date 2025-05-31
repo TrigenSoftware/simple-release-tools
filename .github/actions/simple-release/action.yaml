@@ -1,0 +1,17 @@
+name: simple-release
+description: A simple tool to release projects with monorepo support.
+inputs:
+  action:
+    description: |
+      Action that simple-release should do:
+      - pr - create pull request with release changes
+      - release - create tags, release notes and publish, only if pull request with fresh release was merged
+    default: pr
+  token:
+    description: GitHub Token
+  branch:
+    description: Branch name to store release changes
+    default: simple-release
+runs:
+  using: node20
+  main: dist/index.js

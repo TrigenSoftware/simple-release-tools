@@ -1,0 +1,40 @@
+{
+  "name": "@simple-release/github-action",
+  "type": "module",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A simple-release github action.",
+  "author": {
+    "name": "Dan Onoshko",
+    "email": "danon0404@gmail.com",
+    "url": "https://github.com/dangreen"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/TrigenSoftware/simple-release/tree/master/packages/github-action#readme",
+  "funding": "https://ko-fi.com/dangreen",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TrigenSoftware/simple-release.git",
+    "directory": "packages/github-action"
+  },
+  "bugs": {
+    "url": "https://github.com/TrigenSoftware/simple-release/issues"
+  },
+  "keywords": [],
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": "./src/index.ts",
+  "scripts": {
+    "lint": "eslint --parser-options tsconfigRootDir:. '**/*.{js,ts}'",
+    "test:types": "tsc --noEmit",
+    "test": "run -p lint test:types"
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/exec": "^1.1.1",
+    "@actions/github": "^6.0.1",
+    "@simple-release/core": "workspace:^",
+    "@simple-release/pnpm": "workspace:^"
+  }
+}
