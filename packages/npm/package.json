@@ -1,0 +1,63 @@
+{
+  "name": "@simple-release/npm",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A npm addon for simple-release.",
+  "author": {
+    "name": "Dan Onoshko",
+    "email": "danon0404@gmail.com",
+    "url": "https://github.com/dangreen"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/TrigenSoftware/simple-release-tools/tree/master/packages/npm#readme",
+  "funding": "https://ko-fi.com/dangreen",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TrigenSoftware/simple-release-tools.git",
+    "directory": "packages/npm"
+  },
+  "bugs": {
+    "url": "https://github.com/TrigenSoftware/simple-release-tools/issues"
+  },
+  "keywords": [
+    "simple-release",
+    "npm",
+    "release",
+    "publish",
+    "changelog"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": "./src/index.ts",
+  "publishConfig": {
+    "exports": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "directory": "package",
+    "linkDirectory": false
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clear:package": "del ./package",
+    "clear:dist": "del ./dist",
+    "clear": "del ./package ./dist ./coverage",
+    "prepublishOnly": "run build clear:package clean-publish",
+    "postpublish": "pnpm clear:package",
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint --parser-options tsconfigRootDir:. '**/*.{js,ts}'",
+    "test:unit": "vitest run --coverage",
+    "test:types": "tsc --noEmit",
+    "test": "run -p lint test:unit test:types"
+  },
+  "dependencies": {
+    "@simple-libs/child-process-utils": "^1.0.0",
+    "@simple-release/core": "workspace:^"
+  },
+  "devDependencies": {
+    "test": "workspace:^"
+  }
+}
