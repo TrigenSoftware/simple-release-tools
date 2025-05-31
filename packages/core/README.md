@@ -23,11 +23,11 @@
 [size]: https://packagephobia.com/badge?p=@simple-release/core
 [size-url]: https://packagephobia.com/result?p=@simple-release/core
 
-[build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release-tools/tests.yml?branch=main
-[build-url]: https://github.com/TrigenSoftware/simple-release-tools/actions
+[build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release/tests.yml?branch=main
+[build-url]: https://github.com/TrigenSoftware/simple-release/actions
 
-[coverage]: https://coveralls.io/repos/github/TrigenSoftware/simple-release-tools/badge.svg?branch=main
-[coverage-url]: https://coveralls.io/github/TrigenSoftware/simple-release-tools?branch=main
+[coverage]: https://coveralls.io/repos/github/TrigenSoftware/simple-release/badge.svg?branch=main
+[coverage-url]: https://coveralls.io/github/TrigenSoftware/simple-release?branch=main
 
 A simple tool to release projects with monorepo support.
 
@@ -105,9 +105,9 @@ There no good tool to release projects with conventional-changelog support and w
 
 ## Addons
 
-- [npm](https://github.com/TrigenSoftware/simple-release-tools/tree/main/packages/npm)
-- [pnpm](https://github.com/TrigenSoftware/simple-release-tools/tree/main/packages/pnpm)
-- [github-release](https://github.com/TrigenSoftware/simple-release-tools/tree/main/packages/github-release)
+- [npm](https://github.com/TrigenSoftware/simple-release/tree/main/packages/npm)
+- [pnpm](https://github.com/TrigenSoftware/simple-release/tree/main/packages/pnpm)
+- [github-release](https://github.com/TrigenSoftware/simple-release/tree/main/packages/github-release)
 
 ## Custom addons
 

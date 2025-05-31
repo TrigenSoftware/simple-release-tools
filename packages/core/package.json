@@ -9,15 +9,15 @@
     "url": "https://github.com/dangreen"
   },
   "license": "MIT",
+  "homepage": "https://github.com/TrigenSoftware/simple-release/tree/master/packages/core#readme",
   "funding": "https://ko-fi.com/dangreen",
-  "homepage": "https://github.com/TrigenSoftware/simple-release-tools/tree/master/packages/core#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TrigenSoftware/simple-release-tools.git",
+    "url": "https://github.com/TrigenSoftware/simple-release.git",
     "directory": "packages/core"
   },
   "bugs": {
-    "url": "https://github.com/TrigenSoftware/simple-release-tools/issues"
+    "url": "https://github.com/TrigenSoftware/simple-release/issues"
   },
   "keywords": [
     "release",
