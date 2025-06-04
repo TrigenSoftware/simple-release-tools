@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/TrigenSoftware/simple-release/compare/v1.0.0...v2.0.0) (2025-06-04)
+
+### ⚠ BREAKING CHANGES
+
+* Now node 18 is minimal required version
+
+### Features
+
+* add tag cli option ([9cf268f](https://github.com/TrigenSoftware/simple-release/commit/9cf268f22fe8a68055be213b211d8268ce69a3f3))
+* drop git-url-parse dependency in favor of @simple-libs/hosted-git-info ([f022984](https://github.com/TrigenSoftware/simple-release/commit/f02298413e0b9c084a6d3579bc474a7364dda5cc))
+* upgrade node minimal version to 18 ([#82](https://github.com/TrigenSoftware/simple-release/issues/82)) ([c248fba](https://github.com/TrigenSoftware/simple-release/commit/c248fba43f1d5fe6a296711af88bcf4370a7fc3e))
+
+### Bug Fixes
+
+* badge url in readme ([2ac1202](https://github.com/TrigenSoftware/simple-release/commit/2ac12021d4d90e67133841645321525ef6a3716d))
+
 ## [1.0.0](https://github.com/TrigenSoftware/simple-release/compare/v1.0.0-0...v1.0.0) (2022-01-18)
 
 
