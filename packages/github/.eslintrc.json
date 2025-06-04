@@ -5,7 +5,7 @@
     "@trigen/eslint-config/jest"
   ],
   "parserOptions": {
-    "tsconfigRootDir": "./packages/github-release",
+    "tsconfigRootDir": "./packages/github",
     "project": ["./tsconfig.json"]
   },
   "rules": {

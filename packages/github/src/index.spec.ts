@@ -10,10 +10,10 @@ import {
   PackageJsonProject,
   Logger
 } from '@simple-release/core'
-import { GithubReleaseCreator } from './index.js'
+import { GithubHosting } from './index.js'
 
-describe('github-release', () => {
-  describe('GithubReleaseCreator', () => {
+describe('github', () => {
+  describe('GithubHosting', () => {
     it('should run smoke test', async () => {
       const path = await packageJsonProject()
       const project = new PackageJsonProject({
@@ -26,19 +26,17 @@ describe('github-release', () => {
           log.push(message)
         }
       })
-      const publusher = new GithubReleaseCreator({
+      const publusher = new GithubHosting({
         token: ''
       })
 
-      await publusher.create({
+      await publusher.createRelease({
         project,
         dryRun: true,
         logger: logger.createChild('release')
       })
 
-      const message = log[0].message
-      const json = message.slice(message.indexOf('{'))
-      const release = JSON.parse(json)
+      const release = log[1].message
 
       expect(release).toEqual({
         owner: 'TrigenSoftware',

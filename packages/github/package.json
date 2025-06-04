@@ -1,20 +1,20 @@
 {
-  "name": "@simple-release/github-release",
+  "name": "@simple-release/github",
   "type": "module",
   "version": "1.0.0",
-  "description": "A github release addon for simple-release.",
+  "description": "A github addon for simple-release.",
   "author": {
     "name": "Dan Onoshko",
     "email": "danon0404@gmail.com",
     "url": "https://github.com/dangreen"
   },
   "license": "MIT",
-  "homepage": "https://github.com/TrigenSoftware/simple-release/tree/master/packages/github-release#readme",
+  "homepage": "https://github.com/TrigenSoftware/simple-release/tree/master/packages/github#readme",
   "funding": "https://ko-fi.com/dangreen",
   "repository": {
     "type": "git",
     "url": "https://github.com/TrigenSoftware/simple-release.git",
-    "directory": "packages/github-release"
+    "directory": "packages/github"
   },
   "bugs": {
     "url": "https://github.com/TrigenSoftware/simple-release/issues"
@@ -54,7 +54,6 @@
   },
   "dependencies": {
     "@octokit/rest": "^21.1.1",
-    "@simple-libs/hosted-git-info": "^1.0.0",
     "@simple-release/core": "workspace:^"
   },
   "devDependencies": {

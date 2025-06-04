@@ -101,14 +101,11 @@ importers:
         version: link:../test
     publishDirectory: package
 
-  packages/github-release:
+  packages/github:
     dependencies:
       '@octokit/rest':
         specifier: ^21.1.1
         version: 21.1.1
-      '@simple-libs/hosted-git-info':
-        specifier: ^1.0.0
-        version: 1.0.0
       '@simple-release/core':
         specifier: workspace:^
         version: link:../core
