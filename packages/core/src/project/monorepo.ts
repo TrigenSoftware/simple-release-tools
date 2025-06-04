@@ -1,66 +1,19 @@
 import semver from 'semver'
-import {
-  ConventionalGitClient,
-  packagePrefix
-} from '@conventional-changelog/git-client'
-import { type ReleaseData } from '../release/release.js'
-import { type ProjectManifest } from '../manifest/index.js'
+import { packagePrefix } from '@conventional-changelog/git-client'
+import type { ReleaseData } from '../hosting/hosting.js'
+import type { ProjectManifest } from '../manifest/index.js'
 import {
   type ProjectOptions,
-  type ProjectBumpOptions,
   bumpDefaultOptions,
   Project
 } from './project.js'
+import type {
+  MonorepoMode,
+  MonorepoProjectOptions,
+  MonorepoProjectBumpOptions
+} from './monorepo.types.js'
 
-export type MonorepoMode = 'fixed' | 'independent'
-
-export type GetProjectsOptions = Required<Pick<ProjectOptions, 'compose' | 'gitClient' | 'manifest'>>
-
-export interface MonorepoProjectOptions extends ProjectOptions {
-  /**
-   * The mode of the monorepo.
-   * If mode is 'fixed', all projects will be bumped to the same version.
-   * If mode is 'independent', each project will be bumped to its own version.
-   */
-  mode: MonorepoMode
-  /**
-   * Hook function to compose the manifest.
-   * @param manifest - The manifest to compose.
-   */
-  compose?(manifest: ProjectManifest, isRoot?: boolean): ProjectManifest
-  /**
-   * Get projects in the monorepo.
-   */
-  getProjects(options: GetProjectsOptions): AsyncIterable<Project>
-  /**
-   * Get the scope for the project of monorepo.
-   * @param projectName - Project name to get the scope for.
-   * @param rootName - The name of the root project.
-   * @returns The scope for the project.
-   */
-  scope?(projectName: string, rootName: string): string | Promise<string>
-  /**
-   * Get the tag prefix for the project of monorepo.
-   * @param scope - The scope name of the project.
-   * @returns The tag prefix for the project.
-   */
-  tagPrefix?(scope: string): string | Promise<string>
-  /**
-   * The git client used to interact with the repository.
-   */
-  gitClient?: ConventionalGitClient
-}
-
-export interface MonorepoProjectBumpOptions extends Omit<ProjectBumpOptions, 'tagPrefix'> {
-  /**
-   * Force bump projects without changes in the monorepo with fixed mode.
-   */
-  force?: boolean
-  /**
-   * Bump options for specific projects.
-   */
-  byProject?: Record<string, Pick<ProjectBumpOptions, 'version' | 'as' | 'prerelease' | 'firstRelease'>>
-}
+export * from './monorepo.types.js'
 
 export abstract class MonorepoProject extends Project {
   /**
@@ -73,7 +26,7 @@ export abstract class MonorepoProject extends Project {
   private projectsMutex: Promise<Project[]> | undefined
 
   /**
-   * Creates a new instance of the generic monorepo project.
+   * Creates a new instance of the monorepo project.
    * @param options - The options to use for the monorepo project.
    */
   constructor(options: MonorepoProjectOptions) {

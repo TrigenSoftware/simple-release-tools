@@ -1,5 +1,5 @@
 export * from './manifest/index.js'
 export * from './project/index.js'
-export * from './release/index.js'
+export * from './hosting/index.js'
 export * from './logger.js'
 export * from './releaser.js'

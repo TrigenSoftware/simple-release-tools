@@ -17,7 +17,8 @@ describe('core', () => {
       const project = new PackageJsonProject({
         path: join(path, 'package.json')
       })
-      const releaser = new Releaser(project, {
+      const releaser = new Releaser({
+        project,
         silent: true
       })
         .bump()

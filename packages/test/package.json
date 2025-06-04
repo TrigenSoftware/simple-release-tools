@@ -31,7 +31,7 @@
     "test": "run -p lint test:types"
   },
   "dependencies": {
-    "@conventional-changelog/git-client": "^2.4.0",
+    "@conventional-changelog/git-client": "^2.5.1",
     "@simple-libs/stream-utils": "^1.0.0",
     "@types/node": "^22.0.0"
   }

@@ -12,7 +12,7 @@ export interface LoggerOptions {
 export interface LoggerMessage {
   dryRun?: boolean
   stage: string
-  message: string
+  message: unknown
 }
 
 function defaultPrinter({
@@ -21,7 +21,7 @@ function defaultPrinter({
   message
 }: LoggerMessage) {
   // eslint-disable-next-line no-console
-  console.log(`${dryRun ? `[dry-run]` : ''}[${stage}]: ${message}`)
+  console.log(`${dryRun ? `[dry-run]` : ''}[${stage}]:`, message)
 }
 
 /**
@@ -42,7 +42,7 @@ export class ChildLogger {
    * Logs an info message.
    * @param message - The message to log.
    */
-  info(message: string) {
+  info(message: unknown) {
     this.parent.info(this.stage, message)
   }
 
@@ -50,7 +50,7 @@ export class ChildLogger {
    * Logs a verbose message.
    * @param message - The message to log.
    */
-  verbose(message: string) {
+  verbose(message: unknown) {
     this.parent.verbose(this.stage, message)
   }
 }
@@ -78,7 +78,7 @@ export class Logger {
    * @param stage - The stage of the process.
    * @param message - The message to log.
    */
-  info(stage: string, message: string) {
+  info(stage: string, message: unknown) {
     const {
       silent,
       dryRun
@@ -98,7 +98,7 @@ export class Logger {
    * @param stage - The stage of the process.
    * @param message - The message to log.
    */
-  verbose(stage: string, message: string) {
+  verbose(stage: string, message: unknown) {
     const {
       silent,
       verbose,

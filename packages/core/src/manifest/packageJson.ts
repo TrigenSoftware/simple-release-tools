@@ -3,14 +3,9 @@ import {
   type ProjectManifestVersionUpdate,
   ProjectManifest
 } from './manifest.js'
+import type { PackageJsonProps } from './packageJson.types.js'
 
-export interface PackageJsonKnownProps {
-  name: string
-  version: string
-  private?: boolean
-}
-
-export type PackageJsonProps = PackageJsonKnownProps & Record<string, unknown>
+export * from './packageJson.types.js'
 
 /**
  * A class that represents a package.json manifest.

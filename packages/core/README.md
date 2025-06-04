@@ -36,8 +36,6 @@ A simple tool to release projects with monorepo support.
 <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
 <a href="#usage">Usage</a>
 <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-<a href="#why">Why</a>
-<span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
 <a href="#addons">Addons</a>
 <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
 <a href="#custom-addons">Custom addons</a>
@@ -60,18 +58,19 @@ npm i @simple-release/core
 ```js
 import { Releaser } from '@simple-release/core'
 import { PnpmProject } from '@simple-release/pnpm'
-import { GithubReleaseCreator } from '@simple-release/github-release'
+import { GithubHosting } from '@simple-release/github'
 
-const project = new PnpmProject()
-
-await new Releaser(project)
+await new Releaser({
+  project: new PnpmProject(),
+  hosting: new GithubHosting({
+    token: process.env.GITHUB_TOKEN
+  })
+})
   .bump()
   .commit()
   .tag()
   .push()
-  .release(new GithubReleaseCreator({
-    token: process.env.GITHUB_TOKEN
-  }))
+  .release()
   .publish()
   .run()
 ```
@@ -81,13 +80,16 @@ Monorepo example:
 ```js
 import { Releaser } from '@simple-release/core'
 import { PnpmWorkspacesProject } from '@simple-release/pnpm'
-import { GithubReleaseCreator } from '@simple-release/github-release'
+import { GithubHosting } from '@simple-release/github'
 
-const project = new PnpmWorkspacesProject({
-  mode: 'independent'
+await new Releaser({
+  project: new PnpmWorkspacesProject({
+    mode: 'independent'
+  }),
+  hosting: new GithubHosting({
+    token: process.env.GITHUB_TOKEN
+  })
 })
-
-await new Releaser(project)
   .bump()
   .commit()
   .tag()
@@ -99,9 +101,28 @@ await new Releaser(project)
   .run()
 ```
 
-## Why
+### Options
 
-There no good tool to release projects with conventional-changelog support and with good monorepo support.
+| Option | Description |
+| --- | --- |
+| `project` | Project instance. |
+| `hosting` | Git repository hosting instance. Optional. |
+| `dryRun` | If true, do not write files, just change the version in memory. |
+| `verbose` | If true, log more information to the console. |
+| `silent` | If true, do not log anything to the console. |
+
+### Available steps
+
+| Step | Description |
+| --- | --- |
+| checkout | Checkout the desired branch. |
+| bump | Bump the version of the project. |
+| commit | Commit the changes with the new version. |
+| tag | Tag the commit with the new version. |
+| push | Push the changes to the remote repository. |
+| release | Create a release in the remote repository. |
+| publish | Publish the project to the package registry. |
+| pullRequest | Create a pull request with the changes. |
 
 ## Addons
 
@@ -178,20 +199,25 @@ export class CustomProject extends Project {
 
 There also is a base class for monorepo projects - [MonorepoProject](./src/project/monorepo.ts). It provides methods to work with monorepo projects and you can extend it to create your own monorepo project class (alos see [PackageJsonMonorepoProject](./src/project/packageJsonMonorepo.ts)).
 
-### Release creator
+### GitRepositoryHosting
 
-Release creator is a class that creates a release in the remote repository (like GitHub, GitLab, etc.) or wherever you want. It is used in the `release` step of the releaser.
-
-Signature of the class is very simple, you just need to implement `create` method:
+GitRepositoryHosting is a class that represents a git repository hosting service (like GitHub, GitLab, etc.) or whatever you want. It is used to create a release in the remote repository and create a pull request with the changes.
 
 ```js
-import { ReleaseCreator } from '@simple-release/core'
+import { GitRepositoryHosting } from '@simple-release/core'
 
-export class CustomReleaseCreator extends ReleaseCreator {
-  async create({ project, dryRun, logger }) {
+export class MyRepositoryHosting extends GitRepositoryHosting {
+  async createRelease({ project, dryRun, logger }) {
     // Create the release in the remote repository
     // You can use `project` to get information about the project
-    // or more precisely you can use `project.getgetReleaseData()` to get the data for the release
+    // or more precisely you can use `project.getReleaseData()` to get the data for the release
+  }
+
+  async createPullRequest({ from, to, project, dryRun, logger }) {
+    // Create a pull request with the changes
+    // You can use `project` to get information about the project
   }
 }
 ```
+
+For more detailed example you can look at the [GithubHosting](../github/src/index.ts) implementation.

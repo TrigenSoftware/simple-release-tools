@@ -1,52 +1,194 @@
-import {
-  type GitCommitParams,
-  type GitTagParams,
-  ConventionalGitClient
-} from '@conventional-changelog/git-client'
-import {
-  type Project,
-  MonorepoProject
-} from './project/index.js'
-import { type ReleaseCreator } from './release/index.js'
+import type { ConventionalGitClient } from '@conventional-changelog/git-client'
+import type { Project } from './project/index.js'
+import type { GitRepositoryHosting } from './hosting/index.js'
 import { Logger } from './logger.js'
+import type {
+  PickOverridableOptions,
+  ReleaserCheckoutOptions,
+  ReleaserOptions,
+  ReleaserCommitOptions,
+  ReleaserTagOptions,
+  ReleaserPushOptions,
+  ReleaserStepsOptions
+} from './releaser.types.js'
 
-export interface ReleaserOptions {
-  dryRun?: boolean
-  silent?: boolean
-  logger?: Logger
-}
-
-export type ReleaserCommitOptions = Omit<GitCommitParams, 'verify' | 'files' | 'message'>
-
-export type ReleaserTagOptions = Omit<GitTagParams, 'name' | 'message'>
+export * from './releaser.types.js'
 
 /**
  * A releaser class that provides methods to manage the release process of a project.
  */
-export class Releaser<P extends Project = Project> {
+export class Releaser<
+  P extends Project = Project,
+  G extends GitRepositoryHosting = GitRepositoryHosting
+> {
+  /**
+   * Target project to release.
+   */
+  readonly project: P
+  /**
+   * Git repository hosting service to use for creating releases and pull requests.
+   */
+  readonly hosting?: G
   /**
    * The git client used to interact with the repository.
    */
-  gitClient: ConventionalGitClient
+  readonly gitClient: ConventionalGitClient
   /**
    * The logger used to log messages during the release process.
    */
-  logger: Logger
+  readonly logger: Logger
+  protected readonly state: {
+    headBranch?: string
+    baseBranch?: string
+    bump?: boolean
+    tags?: boolean
+  } = {}
+
+  protected readonly stepsOptions: ReleaserStepsOptions<P, G> = {}
+
   private readonly queue: (() => Promise<unknown>)[] = []
-  private readonly isMonorepo: boolean
 
   /**
    * Creates a project releaser.
-   * @param project
    * @param options
    */
   constructor(
-    public project: P,
-    public options: ReleaserOptions = {}
+    public options: ReleaserOptions<P, G>
   ) {
+    const {
+      project,
+      hosting
+    } = options
+
+    this.project = project
+    this.hosting = hosting
     this.gitClient = project.gitClient
     this.logger = options.logger ?? new Logger(options)
-    this.isMonorepo = project instanceof MonorepoProject
+  }
+
+  enqueue(fn: () => Promise<void>) {
+    this.queue.push(fn)
+    return this
+  }
+
+  private async getBaseBranch() {
+    const { baseBranch } = this.state
+
+    if (baseBranch) {
+      return baseBranch
+    }
+
+    return await this.project.gitClient.getCurrentBranch()
+  }
+
+  /**
+   * Set default options for the releaser steps.
+   * @param options
+   * @returns Project releaser instance for chaining.
+   */
+  setOptions(options: ReleaserStepsOptions<P, G>) {
+    const { logger } = this
+
+    logger.verbose('set-options', 'Setting options for steps:')
+    logger.verbose('set-options', options)
+
+    for (const [key, value] of Object.entries(options)) {
+      Object.assign(
+        this.stepsOptions[key as keyof ReleaserStepsOptions] ??= {},
+        value
+      )
+    }
+
+    logger.verbose('set-options', 'Final options for steps:')
+    logger.verbose('set-options', this.stepsOptions)
+
+    return this
+  }
+
+  /**
+   * Enqueue a task to checkout a branch.
+   * @param branch - The branch to checkout, defaults to `'simple-release'`.
+   * @param options
+   * @returns Project releaser instance for chaining.
+   */
+  checkout(branch?: string, options: ReleaserCheckoutOptions = {}) {
+    return this.enqueue(async () => {
+      const {
+        logger,
+        gitClient
+      } = this
+      const { dryRun } = this.options
+      const {
+        branch: headBranch = 'simple-release',
+        username,
+        email,
+        fetch,
+        force
+      } = {
+        ...this.stepsOptions.checkout,
+        ...options,
+        ...branch ? {
+          branch
+        } : {}
+      }
+
+      logger.info('checkout', `Checking out branch ${headBranch}...`)
+
+      this.state.headBranch = headBranch
+      this.state.baseBranch = await this.getBaseBranch()
+
+      if (username) {
+        logger.verbose('checkout', `Setting git user.name to "${username}".`)
+
+        if (!dryRun) {
+          await gitClient.setConfig('user.name', username)
+        }
+      }
+
+      if (email) {
+        logger.verbose('checkout', `Setting git user.email to "${email}".`)
+
+        if (!dryRun) {
+          await gitClient.setConfig('user.email', email)
+        }
+      }
+
+      if (fetch) {
+        logger.verbose('checkout', `Fetching all commits and tags from the remote repository...`)
+
+        if (!dryRun) {
+          await gitClient.fetch({
+            prune: true,
+            unshallow: true,
+            tags: true,
+            remote: 'origin',
+            branch: 'HEAD'
+          })
+        }
+      }
+
+      if (force) {
+        logger.verbose('checkout', `Deleting branch ${headBranch} if it exists...`)
+
+        if (!dryRun) {
+          await gitClient.deleteBranch(headBranch).catch(() => null)
+        }
+      }
+
+      try {
+        logger.verbose('checkout', `Creating branch ${headBranch}...`)
+
+        if (!dryRun) {
+          await gitClient.createBranch(headBranch)
+        }
+      } catch {
+        logger.verbose('checkout', `Branch ${headBranch} already exists, checking it out...`)
+
+        if (!dryRun) {
+          await gitClient.checkout(headBranch)
+        }
+      }
+    })
   }
 
   /**
@@ -54,26 +196,27 @@ export class Releaser<P extends Project = Project> {
    * @param options
    * @returns Project releaser instance for chaining.
    */
-  bump(options?: Omit<Parameters<P['bump']>[0], 'dryRun' | 'logger'>) {
-    this.queue.push(async () => {
-      const { isMonorepo } = this
+  bump(options?: PickOverridableOptions<P['bump']>) {
+    return this.enqueue(async () => {
+      const { project } = this
       const { dryRun } = this.options
       const logger = this.logger.createChild('bump')
 
-      logger.info(`Bumping version${isMonorepo ? 's' : ''}...`)
+      logger.info('Bumping version...')
 
-      const done = await this.project.bump({
+      const done = await project.bump({
         dryRun,
         logger,
+        ...this.stepsOptions.bump,
         ...options
       })
 
+      this.state.bump = done
+
       if (!done) {
-        logger.info(`No version${isMonorepo ? 's' : ''} changes detected.`)
+        logger.info('No version changes detected.')
       }
     })
-
-    return this
   }
 
   /**
@@ -82,33 +225,47 @@ export class Releaser<P extends Project = Project> {
    * @returns Project releaser instance for chaining.
    */
   commit(options?: ReleaserCommitOptions) {
-    this.queue.push(async () => {
+    return this.enqueue(async () => {
+      const {
+        project,
+        logger,
+        gitClient
+      } = this
       const { dryRun } = this.options
 
-      this.logger.info('commit', `Committing changes...`)
+      logger.info('commit', `Committing changes...`)
 
-      const files = this.project.changedFiles
+      if (!this.state.bump) {
+        logger.info('commit', 'No changes to commit.')
+        return
+      }
+
+      const files = project.changedFiles
       const params = {
+        ...this.stepsOptions.commit,
         ...options,
-        message: this.project.getCommitMessage(),
+        message: project.getCommitMessage(),
         verify: false
       }
 
-      this.logger.verbose('commit', `Files to commit:`)
+      logger.verbose('commit', `Files to commit:`)
 
       files.forEach((file) => {
-        this.logger.verbose('commit', `- ${file}`)
+        logger.verbose('commit', `- ${file}`)
       })
 
-      this.logger.verbose('commit', `Commit message:\n\n${params.message}`)
+      logger.verbose(
+        'commit',
+        params.message.includes('\n')
+          ? `Commit message:\n\n${params.message}\n`
+          : `Commit message: ${params.message}`
+      )
 
       if (!dryRun) {
-        await this.gitClient.add(files)
-        await this.gitClient.commit(params)
+        await gitClient.add(files)
+        await gitClient.commit(params)
       }
     })
-
-    return this
   }
 
   /**
@@ -117,61 +274,80 @@ export class Releaser<P extends Project = Project> {
    * @returns Project releaser instance for chaining.
    */
   tag(options?: ReleaserTagOptions) {
-    this.queue.push(async () => {
-      const { isMonorepo } = this
+    return this.enqueue(async () => {
+      const {
+        project,
+        logger,
+        gitClient
+      } = this
       const { dryRun } = this.options
 
-      this.logger.info('tag', `Tagging version${isMonorepo ? 's' : ''}...`)
+      logger.info('tag', 'Tagging version...')
 
-      const tags = await this.project.getTags()
+      const tags = await project.getTags()
 
-      if (!tags.length) {
-        this.logger.info('tag', `No version${isMonorepo ? 's' : ''} changes detected.`)
+      this.state.tags = tags.length > 0
 
+      if (!this.state.tags) {
+        logger.info('tag', 'No version changes detected.')
         return
       }
 
-      this.logger.verbose('tag', `Tags to create:`)
+      logger.verbose('tag', `Tags to create:`)
 
       for (const tag of tags) {
-        this.logger.verbose('tag', `- ${tag}`)
+        logger.verbose('tag', `- ${tag}`)
 
         if (!dryRun) {
-          await this.gitClient.tag({
+          await gitClient.tag({
+            ...this.stepsOptions.tag,
             ...options,
             name: tag
           })
         }
       }
     })
-
-    return this
   }
 
   /**
    * Enqueue a task to push changes to the remote repository.
-   * @param branch - The branch to push changes to. If not provided, the default branch will be used.
+   * @param options
    * @returns Project releaser instance for chaining.
    */
-  push(branch?: string) {
-    this.queue.push(async () => {
+  push(options?: ReleaserPushOptions) {
+    return this.enqueue(async () => {
+      const {
+        logger,
+        gitClient,
+        state
+      } = this
       const { dryRun } = this.options
-      const targetBranch = branch || await this.gitClient.getDefaultBranch()
+      const branch = await gitClient.getCurrentBranch()
 
-      this.logger.info('push', `Pushing changes to ${targetBranch}...`)
+      logger.info('push', `Pushing changes to ${branch}...`)
+
+      if (!state.bump && !state.tags) {
+        logger.info('push', 'Nothing to push.')
+        return
+      }
 
       if (!dryRun) {
-        await this.gitClient.push(targetBranch, {
-          verify: false
-        })
-        await this.gitClient.push(targetBranch, {
-          tags: true,
-          verify: false
-        })
+        if (state.bump) {
+          await gitClient.push(branch, {
+            verify: false,
+            ...this.stepsOptions.push,
+            ...options
+          })
+        }
+
+        if (state.tags) {
+          await gitClient.push(branch, {
+            tags: true,
+            verify: false
+          })
+        }
       }
     })
-
-    return this
   }
 
   /**
@@ -179,53 +355,121 @@ export class Releaser<P extends Project = Project> {
    * @param options
    * @returns Project releaser instance for chaining.
    */
-  publish(options?: Omit<Parameters<P['publish']>[0], 'dryRun' | 'logger'>) {
-    this.queue.push(async () => {
-      const { isMonorepo } = this
+  publish(options?: PickOverridableOptions<P['publish']>) {
+    return this.enqueue(async () => {
+      const { project } = this
       const { dryRun } = this.options
       const logger = this.logger.createChild('package')
 
-      logger.info(`Publishing project${isMonorepo ? 's' : ''}...`)
+      logger.info('Publishing...')
 
-      await this.project.publish({
+      await project.publish({
         dryRun,
         logger,
+        ...this.stepsOptions.publish,
         ...options
       })
     })
-
-    return this
   }
 
   /**
    * Enqueue a task to create a release.
-   * @param releaseCreator - The release creator instance to use.
+   * @param option
    * @returns Project releaser instance for chaining.
    */
-  release(releaseCreator: ReleaseCreator) {
-    this.queue.push(async () => {
-      const { isMonorepo } = this
+  release(option?: PickOverridableOptions<G['createRelease']>) {
+    const { hosting } = this
+
+    if (!hosting) {
+      throw new Error('Hosting service is not configured. Please set the hosting option.')
+    }
+
+    return this.enqueue(async () => {
+      const { project } = this
       const { dryRun } = this.options
       const logger = this.logger.createChild('release')
 
-      logger.info(`Creating release${isMonorepo ? 's' : ''}...`)
+      logger.info('Creating release...')
 
-      await releaseCreator.create({
-        project: this.project,
+      await hosting.createRelease({
+        project,
         dryRun,
-        logger
+        logger,
+        ...this.stepsOptions.release,
+        ...option
       })
     })
+  }
 
-    return this
+  /**
+   * Enqueue a task to create a pull request.
+   * @param option
+   * @returns Project releaser instance for chaining.
+   */
+  pullRequest(option?: PickOverridableOptions<G['createPullRequest']>) {
+    const { hosting } = this
+
+    if (!hosting) {
+      throw new Error('Hosting service is not configured. Please set the hosting option.')
+    }
+
+    return this.enqueue(async () => {
+      const {
+        project,
+        state
+      } = this
+      const { dryRun } = this.options
+      const logger = this.logger.createChild('pull-request')
+
+      logger.info('Creating pull request...')
+
+      if (!state.bump) {
+        logger.info('No version changes detected, skipping pull request creation.')
+        return
+      }
+
+      if (!state.headBranch) {
+        logger.info('Head branch is not set, skipping pull request creation.')
+        return
+      }
+
+      await hosting.createPullRequest({
+        project,
+        dryRun,
+        logger,
+        from: state.headBranch,
+        to: await this.getBaseBranch(),
+        ...this.stepsOptions.pullRequest,
+        ...option
+      })
+    })
   }
 
   /**
    * Run all queued tasks in order.
+   * @param condition - Optional condition to run the releaser.
    */
-  async run() {
-    for (const fn of this.queue) {
-      await fn()
+  async run(condition?: (releaser: this) => Promise<boolean>) {
+    let shouldRun = true
+
+    if (condition) {
+      const { logger } = this
+
+      logger.info('run', 'Checking condition...')
+
+      shouldRun = await condition(this)
+
+      if (shouldRun) {
+        logger.info('run', 'Condition passed, running releas steps...')
+      } else {
+        logger.info('run', 'Condition failed, skipping release steps.')
+      }
+    }
+
+    if (shouldRun) {
+      for (const fn of this.queue) {
+        await fn()
+      }
     }
 
     this.queue.length = 0
