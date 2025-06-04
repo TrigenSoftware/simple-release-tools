@@ -60,6 +60,16 @@ importers:
         specifier: ^3.0.0
         version: 3.1.4(@types/node@22.15.23)(jiti@2.4.2)
 
+  packages/config:
+    dependencies:
+      '@simple-release/core':
+        specifier: workspace:^
+        version: link:../core
+      find-up-simple:
+        specifier: ^1.0.1
+        version: 1.0.1
+    publishDirectory: package
+
   packages/core:
     dependencies:
       '@conventional-changelog/git-client':
@@ -1786,6 +1796,10 @@ packages:
 
   find-root@1.1.0:
     resolution: {integrity: sha512-NKfW6bec6GfKc0SGx1e07QZY9PE99u0Bft/0rzSD5k3sO/vwkVUpDUKVm5Gpp5Ue3YfShPFTX2070tDs5kB9Ng==}
+
+  find-up-simple@1.0.1:
+    resolution: {integrity: sha512-afd4O7zpqHeRyg4PfDQsXmlDe2PfdHtJt6Akt8jOWaApLOZk5JXs6VMR29lz03pRe9mpykrRCYIYxaJYcfpncQ==}
+    engines: {node: '>=18'}
 
   find-up@5.0.0:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
@@ -4920,6 +4934,8 @@ snapshots:
       merge: 2.1.1
 
   find-root@1.1.0: {}
+
+  find-up-simple@1.0.1: {}
 
   find-up@5.0.0:
     dependencies:
