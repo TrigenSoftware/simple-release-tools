@@ -1,11 +1,11 @@
 import { PackageJsonManifest } from '../manifest/index.js'
 import {
-  type GenericProjectOptions,
-  type GenericProjectPublishOptions,
-  GenericProject
+  type ProjectOptions,
+  type ProjectPublishOptions,
+  Project
 } from './project.js'
 
-export interface PackageJsonProjectOptions extends Omit<GenericProjectOptions, 'manifest'> {
+export interface PackageJsonProjectOptions extends Omit<ProjectOptions, 'manifest'> {
   /**
    * Path to the package.json file
    */
@@ -15,7 +15,7 @@ export interface PackageJsonProjectOptions extends Omit<GenericProjectOptions, '
 /**
  * A package.json based project.
  */
-export class PackageJsonProject extends GenericProject {
+export class PackageJsonProject extends Project {
   /**
    * Creates a package.json based project.
    * @param options
@@ -29,7 +29,7 @@ export class PackageJsonProject extends GenericProject {
     })
   }
 
-  override publish(_options?: GenericProjectPublishOptions): Promise<void> {
+  override publish(_options?: ProjectPublishOptions): Promise<void> {
     throw new Error('Publishing a package.json project is not supported')
   }
 }

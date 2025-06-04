@@ -11,7 +11,7 @@ import {
   forkProject
 } from 'test'
 import type { GetProjectsOptions } from './monorepo.js'
-import type { GenericProject } from './project.js'
+import type { Project } from './project.js'
 import { PackageJsonMonorepoProject } from './packageJsonMonorepo.js'
 
 async function* getProjects(options: GetProjectsOptions) {
@@ -143,7 +143,7 @@ describe('core', () => {
             root: path,
             getProjects
           })
-          const projects: GenericProject[] = []
+          const projects: Project[] = []
 
           for await (const subProject of project.getProjects()) {
             projects.push(subProject)

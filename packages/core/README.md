@@ -155,14 +155,14 @@ Project is a class that represents the project and provides methods to work with
 - publish the project
 - etc.
 
-Most of the methods are implemented in base class [GenericProject](./src/project/project.ts) and you can extend it to create your own project class.
+Most of the methods are implemented in base class [Project](./src/project/project.ts) and you can extend it to create your own project class.
 
 In most casses you need just prepare options for the base class and implement `publish` method (like it is done in [PackageJsonProject](./src/project/packageJson.ts)).
 
 ```js
-import { GenericProject } from '@simple-release/core'
+import { Project } from '@simple-release/core'
 
-export class CustomProject extends GenericProject {
+export class CustomProject extends Project {
   constructor(options) {
     super({
       ...options,
@@ -176,7 +176,7 @@ export class CustomProject extends GenericProject {
 }
 ```
 
-There also is a base class for monorepo projects - [GenericMonorepoProject](./src/project/monorepo.ts). It provides methods to work with monorepo projects and you can extend it to create your own monorepo project class (alos see [PackageJsonMonorepoProject](./src/project/packageJsonMonorepo.ts)).
+There also is a base class for monorepo projects - [MonorepoProject](./src/project/monorepo.ts). It provides methods to work with monorepo projects and you can extend it to create your own monorepo project class (alos see [PackageJsonMonorepoProject](./src/project/packageJsonMonorepo.ts)).
 
 ### Release creator
 
@@ -185,9 +185,9 @@ Release creator is a class that creates a release in the remote repository (like
 Signature of the class is very simple, you just need to implement `create` method:
 
 ```js
-import { GenericReleaseCreator } from '@simple-release/core'
+import { ReleaseCreator } from '@simple-release/core'
 
-export class CustomReleaseCreator extends GenericReleaseCreator {
+export class CustomReleaseCreator extends ReleaseCreator {
   async create({ project, dryRun, logger }) {
     // Create the release in the remote repository
     // You can use `project` to get information about the project

@@ -18,11 +18,11 @@ import { type ReleaseData } from '../release/index.js'
 import { type ChildLogger } from '../logger.js'
 import { getReleaseType } from '../utils.js'
 
-export interface GenericProjectVersionUpdate extends ProjectManifestVersionUpdate {
+export interface ProjectVersionUpdate extends ProjectManifestVersionUpdate {
   notes: string
 }
 
-export interface GenericProjectOptions {
+export interface ProjectOptions {
   /**
    * The manifest of the project.
    */
@@ -43,7 +43,7 @@ export interface GenericProjectOptions {
   gitClient?: ConventionalGitClient
 }
 
-export interface GenericProjectBumpOptions {
+export interface ProjectBumpOptions {
   /**
    * Force a specific version to bump to.
    * If not provided, the version will be determined based on the commits.
@@ -77,7 +77,7 @@ export interface GenericProjectBumpOptions {
   logger?: ChildLogger
 }
 
-export interface GenericProjectTagsOptions {
+export interface ProjectTagsOptions {
   /**
    * The prefix to use for the tag.
    * @default 'v'
@@ -91,7 +91,7 @@ export interface GenericProjectTagsOptions {
   verify?: boolean
 }
 
-export interface GenericProjectReleaseOptions {
+export interface ProjectReleaseOptions {
   /**
    * The prefix to use for the tag.
    * @default 'v'
@@ -99,7 +99,7 @@ export interface GenericProjectReleaseOptions {
   tagPrefix?: string
 }
 
-export interface GenericProjectPublishOptions {
+export interface ProjectPublishOptions {
   dryRun?: boolean
   logger?: ChildLogger
 }
@@ -114,7 +114,7 @@ export const bumpDefaultOptions = {
 /**
  * A class that represents a generic project.
  */
-export abstract class GenericProject {
+export abstract class Project {
   /**
    * The manifest of the project.
    */
@@ -123,7 +123,7 @@ export abstract class GenericProject {
    * The git client used to interact with the repository.
    */
   gitClient: ConventionalGitClient
-  options: GenericProjectOptions
+  options: ProjectOptions
   /**
    * Changed files after interacting with the project.
    */
@@ -131,13 +131,13 @@ export abstract class GenericProject {
   /**
    * Version updates after interacting with the project.
    */
-  versionUpdates: GenericProjectVersionUpdate[] = []
+  versionUpdates: ProjectVersionUpdate[] = []
 
   /**
    * Creates a new instance of the generic project.
    * @param options - The options to use for the project.
    */
-  constructor(options: GenericProjectOptions) {
+  constructor(options: ProjectOptions) {
     const {
       manifest,
       compose,
@@ -171,7 +171,7 @@ export abstract class GenericProject {
    * @param options - The options to use for getting the tags.
    * @returns The new git tags.
    */
-  async getTags(options: GenericProjectTagsOptions = {}) {
+  async getTags(options: ProjectTagsOptions = {}) {
     const {
       manifest,
       gitClient
@@ -199,7 +199,7 @@ export abstract class GenericProject {
    * @param options - The options to use for getting the release data.
    * @returns The release data.
    */
-  async getReleaseData(options: GenericProjectReleaseOptions = {}): Promise<ReleaseData[]> {
+  async getReleaseData(options: ProjectReleaseOptions = {}): Promise<ReleaseData[]> {
     const {
       manifest,
       versionUpdates
@@ -243,7 +243,7 @@ export abstract class GenericProject {
    * @param options - The options to use for getting the next version.
    * @returns The next version.
    */
-  async getNextVersion(options: GenericProjectBumpOptions = {}): Promise<string | null> {
+  async getNextVersion(options: ProjectBumpOptions = {}): Promise<string | null> {
     const {
       gitClient,
       manifest
@@ -318,7 +318,7 @@ export abstract class GenericProject {
    * @param options - The options to use for bumping the version.
    * @returns Whether the version was bumped.
    */
-  async bump(options: GenericProjectBumpOptions = {}) {
+  async bump(options: ProjectBumpOptions = {}) {
     const nextVersion = await this.getNextVersion(options)
 
     if (!nextVersion) {
@@ -384,5 +384,5 @@ export abstract class GenericProject {
    * Publish the project.
    * @param options
    */
-  abstract publish(options?: GenericProjectPublishOptions): Promise<void>
+  abstract publish(options?: ProjectPublishOptions): Promise<void>
 }

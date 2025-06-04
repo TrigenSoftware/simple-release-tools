@@ -1,7 +1,7 @@
 import { join } from 'path'
 import {
   type PackageJsonMonorepoProjectOptions,
-  type GenericProjectBumpOptions,
+  type ProjectBumpOptions,
   type GetProjectsOptions,
   PackageJsonManifest,
   PackageJsonMonorepoProject
@@ -13,7 +13,7 @@ import {
 
 export type NpmWorkspacesProjectOptions = Omit<PackageJsonMonorepoProjectOptions, 'getProjects'>
 
-export type NpmWorkspacesProjectBumpOptions = GenericProjectBumpOptions
+export type NpmWorkspacesProjectBumpOptions = ProjectBumpOptions
 
 export type NpmWorkspacesProjectPublishOptions = Omit<PublishOptions, 'workspaces'>
 

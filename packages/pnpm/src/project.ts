@@ -1,6 +1,6 @@
 import {
   type PackageJsonProjectOptions,
-  type GenericProjectBumpOptions,
+  type ProjectBumpOptions,
   PackageJsonProject
 } from '@simple-release/core'
 import {
@@ -10,7 +10,7 @@ import {
 
 export type PnpmProjectOptions = PackageJsonProjectOptions
 
-export type PnpmProjectBumpOptions = GenericProjectBumpOptions
+export type PnpmProjectBumpOptions = ProjectBumpOptions
 
 export type PnpmProjectPublishOptions = Omit<PublishOptions, 'workspaces'>
 

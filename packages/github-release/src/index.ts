@@ -1,8 +1,8 @@
 import { Octokit } from '@octokit/rest'
 import { parseHostedGitUrl } from '@simple-libs/hosted-git-info'
 import {
-  type GenericReleaseCreatorOptions,
-  GenericReleaseCreator
+  type ReleaseCreatorOptions,
+  ReleaseCreator
 } from '@simple-release/core'
 
 export interface GithubReleaseCreatorOptions {
@@ -28,7 +28,7 @@ const noop = () => { /* no-op */ }
 /**
  * A class that creates releases on GitHub using the GitHub REST API.
  */
-export class GithubReleaseCreator extends GenericReleaseCreator {
+export class GithubReleaseCreator extends ReleaseCreator {
   readonly octokit: Octokit
 
   /**
@@ -69,7 +69,7 @@ export class GithubReleaseCreator extends GenericReleaseCreator {
     }
   }
 
-  async create(options: GenericReleaseCreatorOptions): Promise<void> {
+  async create(options: ReleaseCreatorOptions): Promise<void> {
     const {
       project,
       dryRun,

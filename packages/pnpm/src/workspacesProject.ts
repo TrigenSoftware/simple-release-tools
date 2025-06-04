@@ -4,7 +4,7 @@ import fg from 'fast-glob'
 import ryf from 'read-yaml-file'
 import {
   type PackageJsonMonorepoProjectOptions,
-  type GenericProjectBumpOptions,
+  type ProjectBumpOptions,
   type GetProjectsOptions,
   PackageJsonManifest,
   PackageJsonMonorepoProject
@@ -18,7 +18,7 @@ const readYamlFile = ryf as unknown as <T = Record<string, unknown>>(filePath: s
 
 export type PnpmWorkspacesProjectOptions = Omit<PackageJsonMonorepoProjectOptions, 'getProjects'>
 
-export type PnpmWorkspacesProjectBumpOptions = GenericProjectBumpOptions
+export type PnpmWorkspacesProjectBumpOptions = ProjectBumpOptions
 
 export type PnpmWorkspacesProjectPublishOptions = Omit<PublishOptions, 'workspaces'>
 

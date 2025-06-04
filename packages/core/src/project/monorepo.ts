@@ -6,17 +6,17 @@ import {
 import { type ReleaseData } from '../release/release.js'
 import { type ProjectManifest } from '../manifest/index.js'
 import {
-  type GenericProjectOptions,
-  type GenericProjectBumpOptions,
+  type ProjectOptions,
+  type ProjectBumpOptions,
   bumpDefaultOptions,
-  GenericProject
+  Project
 } from './project.js'
 
 export type MonorepoMode = 'fixed' | 'independent'
 
-export type GetProjectsOptions = Required<Pick<GenericProjectOptions, 'compose' | 'gitClient' | 'manifest'>>
+export type GetProjectsOptions = Required<Pick<ProjectOptions, 'compose' | 'gitClient' | 'manifest'>>
 
-export interface GenericMonorepoProjectOptions extends GenericProjectOptions {
+export interface MonorepoProjectOptions extends ProjectOptions {
   /**
    * The mode of the monorepo.
    * If mode is 'fixed', all projects will be bumped to the same version.
@@ -31,7 +31,7 @@ export interface GenericMonorepoProjectOptions extends GenericProjectOptions {
   /**
    * Get projects in the monorepo.
    */
-  getProjects(options: GetProjectsOptions): AsyncIterable<GenericProject>
+  getProjects(options: GetProjectsOptions): AsyncIterable<Project>
   /**
    * Get the scope for the project of monorepo.
    * @param projectName - Project name to get the scope for.
@@ -51,7 +51,7 @@ export interface GenericMonorepoProjectOptions extends GenericProjectOptions {
   gitClient?: ConventionalGitClient
 }
 
-export interface GenericMonorepoProjectBumpOptions extends Omit<GenericProjectBumpOptions, 'tagPrefix'> {
+export interface MonorepoProjectBumpOptions extends Omit<ProjectBumpOptions, 'tagPrefix'> {
   /**
    * Force bump projects without changes in the monorepo with fixed mode.
    */
@@ -59,24 +59,24 @@ export interface GenericMonorepoProjectBumpOptions extends Omit<GenericProjectBu
   /**
    * Bump options for specific projects.
    */
-  byProject?: Record<string, Pick<GenericProjectBumpOptions, 'version' | 'as' | 'prerelease' | 'firstRelease'>>
+  byProject?: Record<string, Pick<ProjectBumpOptions, 'version' | 'as' | 'prerelease' | 'firstRelease'>>
 }
 
-export abstract class GenericMonorepoProject extends GenericProject {
+export abstract class MonorepoProject extends Project {
   /**
    * The mode of the monorepo.
    * If mode is 'fixed', all projects will be bumped to the same version.
    * If mode is 'independent', each project will be bumped to its own version.
    */
   mode: MonorepoMode
-  declare options: GenericMonorepoProjectOptions & GenericProjectOptions
-  private projectsMutex: Promise<GenericProject[]> | undefined
+  declare options: MonorepoProjectOptions & ProjectOptions
+  private projectsMutex: Promise<Project[]> | undefined
 
   /**
    * Creates a new instance of the generic monorepo project.
    * @param options - The options to use for the monorepo project.
    */
-  constructor(options: GenericMonorepoProjectOptions) {
+  constructor(options: MonorepoProjectOptions) {
     const {
       mode,
       compose
@@ -107,10 +107,10 @@ export abstract class GenericMonorepoProject extends GenericProject {
         gitClient: this.gitClient,
         manifest: this.manifest
       }
-      const projects: GenericProject[] = []
-      let resolve: (projects: GenericProject[]) => void
+      const projects: Project[] = []
+      let resolve: (projects: Project[]) => void
 
-      this.projectsMutex = new Promise<GenericProject[]>((r) => {
+      this.projectsMutex = new Promise<Project[]>((r) => {
         resolve = r
       })
 
@@ -243,8 +243,8 @@ export abstract class GenericMonorepoProject extends GenericProject {
   }
 
   private async getBumpOptions(
-    project: GenericProject,
-    options: GenericMonorepoProjectBumpOptions
+    project: Project,
+    options: MonorepoProjectBumpOptions
   ) {
     const {
       preset = bumpDefaultOptions.preset,
@@ -272,7 +272,7 @@ export abstract class GenericMonorepoProject extends GenericProject {
   }
 
   override getNextVersion(
-    options: GenericMonorepoProjectBumpOptions = {}
+    options: MonorepoProjectBumpOptions = {}
   ): Promise<string | null> {
     if (this.mode === 'fixed' && options.version) {
       return super.getNextVersion(options)
@@ -284,7 +284,7 @@ export abstract class GenericMonorepoProject extends GenericProject {
   }
 
   private async independentBump(
-    options: GenericMonorepoProjectBumpOptions = {}
+    options: MonorepoProjectBumpOptions = {}
   ) {
     let hasBump = false
 
@@ -308,12 +308,12 @@ export abstract class GenericMonorepoProject extends GenericProject {
   }
 
   private async fixedBump(
-    options: GenericMonorepoProjectBumpOptions = {}
+    options: MonorepoProjectBumpOptions = {}
   ) {
     const { force } = options
     const updatedProjects: {
-      project: GenericProject
-      options: GenericMonorepoProjectBumpOptions
+      project: Project
+      options: MonorepoProjectBumpOptions
     }[] = []
     let hasBump = false
     let fixedVersion: string | undefined
@@ -363,7 +363,7 @@ export abstract class GenericMonorepoProject extends GenericProject {
   }
 
   override async bump(
-    options: GenericMonorepoProjectBumpOptions = {}
+    options: MonorepoProjectBumpOptions = {}
   ) {
     const { mode } = this
 

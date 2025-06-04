@@ -4,10 +4,10 @@ import {
   ConventionalGitClient
 } from '@conventional-changelog/git-client'
 import {
-  type GenericProject,
-  GenericMonorepoProject
+  type Project,
+  MonorepoProject
 } from './project/index.js'
-import { type GenericReleaseCreator } from './release/index.js'
+import { type ReleaseCreator } from './release/index.js'
 import { Logger } from './logger.js'
 
 export interface ReleaserOptions {
@@ -23,7 +23,7 @@ export type ReleaserTagOptions = Omit<GitTagParams, 'name' | 'message'>
 /**
  * A releaser class that provides methods to manage the release process of a project.
  */
-export class Releaser<P extends GenericProject = GenericProject> {
+export class Releaser<P extends Project = Project> {
   /**
    * The git client used to interact with the repository.
    */
@@ -46,7 +46,7 @@ export class Releaser<P extends GenericProject = GenericProject> {
   ) {
     this.gitClient = project.gitClient
     this.logger = options.logger ?? new Logger(options)
-    this.isMonorepo = project instanceof GenericMonorepoProject
+    this.isMonorepo = project instanceof MonorepoProject
   }
 
   /**
@@ -202,7 +202,7 @@ export class Releaser<P extends GenericProject = GenericProject> {
    * @param releaseCreator - The release creator instance to use.
    * @returns Project releaser instance for chaining.
    */
-  release(releaseCreator: GenericReleaseCreator) {
+  release(releaseCreator: ReleaseCreator) {
     this.queue.push(async () => {
       const { isMonorepo } = this
       const { dryRun } = this.options

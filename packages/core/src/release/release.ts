@@ -1,8 +1,8 @@
-import { GenericProject } from '../project/project.js'
+import { Project } from '../project/project.js'
 import { type ChildLogger } from '../logger.js'
 
-export interface GenericReleaseCreatorOptions {
-  project: GenericProject
+export interface ReleaseCreatorOptions {
+  project: Project
   dryRun?: boolean
   logger?: ChildLogger
 }
@@ -19,10 +19,10 @@ export interface ReleaseData {
 /**
  * A class that represents a generic release creator.
  */
-export abstract class GenericReleaseCreator {
+export abstract class ReleaseCreator {
   /**
    * Creates a new release for the given project.
    * @param options
    */
-  abstract create(options: GenericReleaseCreatorOptions): Promise<void>
+  abstract create(options: ReleaseCreatorOptions): Promise<void>
 }

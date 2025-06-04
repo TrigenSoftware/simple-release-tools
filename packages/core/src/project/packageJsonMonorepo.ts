@@ -3,16 +3,16 @@ import {
   join
 } from 'path'
 import { PackageJsonManifest } from '../manifest/index.js'
-import { type GenericProjectPublishOptions } from './project.js'
+import { type ProjectPublishOptions } from './project.js'
 import { PackageJsonProject } from './packageJson.js'
 import {
-  type GenericMonorepoProjectOptions,
+  type MonorepoProjectOptions,
   type MonorepoMode,
   type GetProjectsOptions,
-  GenericMonorepoProject
+  MonorepoProject
 } from './monorepo.js'
 
-export interface PackageJsonMonorepoProjectOptions extends Omit<GenericMonorepoProjectOptions, 'getProjects' | 'manifest'> {
+export interface PackageJsonMonorepoProjectOptions extends Omit<MonorepoProjectOptions, 'getProjects' | 'manifest'> {
   mode: MonorepoMode
   /**
    * Root path of the monorepo
@@ -27,7 +27,7 @@ export interface PackageJsonMonorepoProjectOptions extends Omit<GenericMonorepoP
 /**
  * A package.json based monorepo project.
  */
-export class PackageJsonMonorepoProject extends GenericMonorepoProject {
+export class PackageJsonMonorepoProject extends MonorepoProject {
   /**
    * Creates a package.json based monorepo project.
    * @param options
@@ -52,7 +52,7 @@ export class PackageJsonMonorepoProject extends GenericMonorepoProject {
     })
   }
 
-  override publish(_options?: GenericProjectPublishOptions): Promise<void> {
+  override publish(_options?: ProjectPublishOptions): Promise<void> {
     throw new Error('Publishing a package.json monorepo project is not supported')
   }
 }

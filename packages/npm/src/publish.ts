@@ -1,11 +1,11 @@
 import { spawn } from 'child_process'
 import { throwProcessError } from '@simple-libs/child-process-utils'
 import {
-  type GenericProjectPublishOptions,
+  type ProjectPublishOptions,
   type PackageJsonProject
 } from '@simple-release/core'
 
-export interface PublishOptions extends GenericProjectPublishOptions {
+export interface PublishOptions extends ProjectPublishOptions {
   access?: string
   tag?: string | ((version: string, prerelease: readonly (string | number)[] | null) => string)
   otp?: string
