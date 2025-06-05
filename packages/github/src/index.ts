@@ -142,12 +142,19 @@ export class GithubHosting extends GitRepositoryHosting {
     }
   }
 
-  private getPullRequestData(project: Project) {
+  private getPullRequestData(project: Project, from: string, to: string) {
     const [title] = project.getCommitMessage().split('\n')
     const body = `${project.versionUpdates.map(({ name, notes }) => `# ${name}\n\n${notes.trim()}`).join('\n\n')}
 
 ---
 This PR was generated with [simple-release](https://github.com/TrigenSoftware/simple-release).
+
+<!--
+  Please do not edit this comment.
+  simple-release-pull-request: true
+  simple-release-branch-from: ${from}
+  simple-release-branch-to: ${to}
+-->
 `
 
     return {
@@ -193,7 +200,7 @@ This PR was generated with [simple-release](https://github.com/TrigenSoftware/si
     const {
       title,
       body
-    } = this.getPullRequestData(project)
+    } = this.getPullRequestData(project, from, to)
 
     logger?.verbose('Pull request data:')
 
