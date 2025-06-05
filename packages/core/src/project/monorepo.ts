@@ -293,6 +293,7 @@ export abstract class MonorepoProject extends Project {
     if (fixedVersion) {
       hasBump = await super.bump({
         ...options,
+        force: true,
         version: fixedVersion,
         tagPrefix: await this.getTagPrefix('')
       })

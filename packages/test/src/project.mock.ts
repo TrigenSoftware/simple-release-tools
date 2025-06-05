@@ -107,6 +107,7 @@ export async function packageJsonIndependentMonorepoProject(pkgs: Record<string 
       name: 'package-json-monorepo-project',
       version: '0.0.0',
       description: 'A package json monorepo project',
+      private: true,
       ...pkgs[0]
     },
     1: {
@@ -187,6 +188,7 @@ export async function packageJsonFixedMonorepoProject(pkgs: Record<string | numb
       name: 'package-json-monorepo-project',
       version: '2.0.0',
       description: 'A package json monorepo project',
+      private: true,
       ...pkgs[0]
     },
     1: {
