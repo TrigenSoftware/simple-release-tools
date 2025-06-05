@@ -61,6 +61,9 @@ export class ReleaserGithubAction<P extends Project = Project> extends Releaser<
         hosting,
         logger
       } = this
+
+      logger.info('fetch-options', 'Fetching options from pull request comments...')
+
       const { octokit } = hosting
       const repositoryId = await hosting.getRepositoryId(project)
       const { data: [pr] } = await octokit.rest.pulls.list({
@@ -68,6 +71,12 @@ export class ReleaserGithubAction<P extends Project = Project> extends Releaser<
         head: `${repositoryId.owner}:${headBranch}`,
         state: 'open'
       })
+
+      if (!pr) {
+        logger.info('fetch-options', 'No open pull request found.')
+        return
+      }
+
       const { data: comments } = await octokit.rest.issues.listComments({
         ...repositoryId,
         issue_number: pr.number
