@@ -7,3 +7,7 @@ export const project = new PnpmWorkspacesProject({
 export const releaser = {
   verbose: true
 }
+
+export const publish = {
+  access: 'public'
+}
