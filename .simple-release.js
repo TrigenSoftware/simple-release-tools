@@ -5,6 +5,5 @@ export const project = new PnpmWorkspacesProject({
 })
 
 export const releaser = {
-  verbose: true,
-  dryRun: true
+  verbose: true
 }
