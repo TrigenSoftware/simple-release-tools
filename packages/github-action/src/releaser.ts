@@ -141,7 +141,10 @@ export class ReleaserGithubAction<P extends Project = Project> extends Releaser<
    * Run action based on the context.
    */
   async runAction() {
-    const { logger } = this
+    const {
+      logger,
+      gitClient
+    } = this
 
     logger.info('run', 'Detecting action...')
 
@@ -157,10 +160,15 @@ export class ReleaserGithubAction<P extends Project = Project> extends Releaser<
 
     if (isSetOptionsComment !== null) {
       logger.info('run', 'Action triggered by a pull request comment.')
-      super.checkout(isSetOptionsComment, {
-        fetch: true,
-        force: false
-      })
+
+      const currentBranch = await gitClient.getCurrentBranch()
+
+      if (currentBranch !== isSetOptionsComment) {
+        super.checkout(isSetOptionsComment, {
+          fetch: true,
+          force: false
+        })
+      }
     } else {
       isReleaseCommit = await ifReleaseCommit(this)
     }
