@@ -333,6 +333,8 @@ export class Releaser<
 
       if (!dryRun) {
         if (state.bump) {
+          await gitClient.setConfig('user.name', 'dangreen')
+          await gitClient.setConfig('user.email', 'danon0404@gmail.com')
           await gitClient.push(branch, {
             verify: false,
             ...this.stepsOptions.push,
