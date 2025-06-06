@@ -99,4 +99,6 @@ export async function load(requirements: Record<string, any> = {}) {
   return null
 }
 
-void {}
+void {
+  p: true
+}
