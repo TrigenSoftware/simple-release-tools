@@ -217,7 +217,7 @@ export abstract class Project {
       releaseType = as
     } else {
       const bump = await new Bumper(gitClient)
-        .loadPreset(preset)
+        .loadPreset(preset, _ => import(_))
         .commits({
           path: projectPath
         })
@@ -286,7 +286,7 @@ export abstract class Project {
     }
 
     const notes = new ConventionalChangelog(gitClient)
-      .loadPreset(preset)
+      .loadPreset(preset, _ => import(_))
       .commits({
         path: projectPath
       })
