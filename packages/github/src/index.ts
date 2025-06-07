@@ -117,6 +117,12 @@ export class GithubHosting extends GitRepositoryHosting {
     } = options
     const { octokit } = this
     const data = await project.getReleaseData()
+
+    if (!data.length) {
+      logger?.info('No release data found. Skipping release creation.')
+      return
+    }
+
     const repositoryId = await this.getRepositoryId(project)
 
     for (const releaseData of data) {
