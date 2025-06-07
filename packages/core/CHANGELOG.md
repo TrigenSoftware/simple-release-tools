@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/TrigenSoftware/simple-release/compare/v2.0.1...v2.0.2) (2025-06-07)
+
+### Bug Fixes
+
+* load preset with local import function ([0bc9e62](https://github.com/TrigenSoftware/simple-release/commit/0bc9e62aa2386446760a7d4790765ce0ce4d2096))
+
 ## [2.0.1](https://github.com/TrigenSoftware/simple-release/compare/v2.0.0...v2.0.1) (2025-06-07)
 
 ### Bug Fixes
