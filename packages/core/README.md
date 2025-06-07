@@ -29,7 +29,12 @@
 [coverage]: https://coveralls.io/repos/github/TrigenSoftware/simple-release/badge.svg?branch=main
 [coverage-url]: https://coveralls.io/github/TrigenSoftware/simple-release?branch=main
 
-A simple tool to release projects with monorepo support.
+A simple tool to automate version bumps, changelogs, and releases using [Conventional Commits](https://conventionalcommits.org).
+
+- 📄 Uses [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) to parse commits, determine the next version, and generate a changelog.
+- 🗂️ Supports monorepos and can release multiple packages in a single run.
+- 🧩 Flexible and extensible with custom addons for different project types.
+- 🚀 Has [GitHub Action](https://github.com/TrigenSoftware/simple-release-action) to automate releases in CI/CD pipelines.
 
 <hr />
 <a href="#install">Install</a>
@@ -94,9 +99,7 @@ await new Releaser({
   .commit()
   .tag()
   .push()
-  .release(new GithubReleaseCreator({
-    token: process.env.GITHUB_TOKEN
-  }))
+  .release()
   .publish()
   .run()
 ```
@@ -116,7 +119,7 @@ await new Releaser({
 | Step | Description |
 | --- | --- |
 | checkout | Checkout the desired branch. |
-| bump | Bump the version of the project. |
+| bump | Bump the version of the project and generate changelog. |
 | commit | Commit the changes with the new version. |
 | tag | Tag the commit with the new version. |
 | push | Push the changes to the remote repository. |
@@ -126,9 +129,9 @@ await new Releaser({
 
 ## Addons
 
-- [npm](https://github.com/TrigenSoftware/simple-release/tree/main/packages/npm)
-- [pnpm](https://github.com/TrigenSoftware/simple-release/tree/main/packages/pnpm)
-- [github-release](https://github.com/TrigenSoftware/simple-release/tree/main/packages/github-release)
+- [npm](https://github.com/TrigenSoftware/simple-release/tree/main/packages/npm) - for projects using `npm` as a package manager.
+- [pnpm](https://github.com/TrigenSoftware/simple-release/tree/main/packages/pnpm) - for projects using `pnpm` as a package manager.
+- [github](https://github.com/TrigenSoftware/simple-release/tree/main/packages/github) - for projects hosted on GitHub.
 
 ## Custom addons
 

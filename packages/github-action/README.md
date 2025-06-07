@@ -103,7 +103,7 @@ action
 
 You can pass additional options to releaser via comment in your pull request. Your comment should start with `!simple-release/set-options` and contain JSON object with options. For example:
 
-````
+````md
 !simple-release/set-options
 
 ```json

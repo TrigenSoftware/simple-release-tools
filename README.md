@@ -6,12 +6,17 @@
 [build]: https://img.shields.io/github/actions/workflow/status/TrigenSoftware/simple-release-tools/tests.yml?branch=main
 [build-url]: https://github.com/TrigenSoftware/simple-release-tools/actions
 
-[coverage]: https://img.shields.io/codecov/c/github/TrigenSoftware/simple-release-tools.svg
-[coverage-url]: https://app.codecov.io/gh/TrigenSoftware/simple-release-tools
+[coverage]: https://coveralls.io/repos/github/TrigenSoftware/simple-release/badge.svg?branch=main
+[coverage-url]: https://coveralls.io/github/TrigenSoftware/simple-release?branch=main
 
-A simple tool to release projects with monorepo support.
+A simple tool to automate version bumps, changelogs, and releases using [Conventional Commits](https://conventionalcommits.org).
 
-## Available tools
+- 📄 Uses [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) to parse commits, determine the next version, and generate a changelog.
+- 🗂️ Supports monorepos and can release multiple packages in a single run.
+- 🧩 Flexible and extensible with custom addons for different project types.
+- 🚀 Has [GitHub Action](https://github.com/TrigenSoftware/simple-release-action) to automate releases in CI/CD pipelines.
+
+## Available packages
 
 | Name | Description | Version | Dependencies |
 |------|-------------|---------|--------------|
