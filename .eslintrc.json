@@ -10,6 +10,10 @@
     "node": true
   },
   "ignorePatterns": [
-    "packages/*/dist/**/*"
-  ]
+    "packages/*/dist/**/*",
+    "packages/*/package/**/*"
+  ],
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "error"
+  }
 }

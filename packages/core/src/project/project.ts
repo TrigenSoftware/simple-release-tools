@@ -5,7 +5,7 @@ import { ConventionalChangelog } from 'conventional-changelog'
 import { concatStringStream } from '@simple-libs/stream-utils'
 import { parseHostedGitUrl } from '@simple-libs/hosted-git-info'
 import semver, { type ReleaseType } from 'semver'
-import { ProjectManifest } from '../manifest/index.js'
+import type { ProjectManifest } from '../manifest/index.js'
 import {
   addReleaseNotes,
   extractLastRelease,
