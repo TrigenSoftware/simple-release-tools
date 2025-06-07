@@ -13,7 +13,7 @@ import {
   changelogHeader,
   addReleaseNotes,
   extractLastReleaseFromFile
-} from './changelog.js'
+} from './change-log.js'
 
 async function* stringToIterable(str: string) {
   const lines = str.split('\n')

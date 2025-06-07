@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { fileURLToPath } from 'url'
 import fs from 'fs'
 import path from 'path'
-import { readLastChangesFromStream } from './changelog.js'
+import { readLastChangesFromStream } from './change-log.js'
 
 const dirname = fileURLToPath(new URL('.', import.meta.url))
 const mocks = path.join(dirname, '..', 'test', 'mocks')

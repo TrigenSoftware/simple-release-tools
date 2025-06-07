@@ -10,7 +10,7 @@ import {
   addReleaseNotes,
   extractLastRelease,
   extractLastReleaseFromFile
-} from '../changelog.js'
+} from '../change-log.js'
 import type { ReleaseData } from '../hosting/index.js'
 import { getReleaseType } from '../utils.js'
 import type {
