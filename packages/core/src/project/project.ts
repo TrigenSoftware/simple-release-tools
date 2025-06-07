@@ -144,6 +144,11 @@ export abstract class Project {
       ? await extractLastRelease(versionUpdates[0].notes)
       : await extractLastReleaseFromFile(changelogPath)
 
+    console.log({
+      lastRelease,
+      version
+    })
+
     if (!lastRelease || lastRelease.version && lastRelease.version !== version) {
       return []
     }

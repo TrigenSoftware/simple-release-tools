@@ -17,4 +17,5 @@ await new ReleaserGithubAction({
   ...releaser
 })
   .setOptions(options)
-  .runAction()
+  .release()
+  .run()
