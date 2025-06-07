@@ -70,7 +70,7 @@ describe('core', () => {
 
           * **browserslist-config:** update queries, add esm queries ([3031c6b](https://github.com/TrigenSoftware/scripts/commit/3031c6b322330be57654bdebc1012bddc20e7972))",
             "previousTag": "v8.0.0-alpha.1",
-            "version": "8.0.0-alpha.1",
+            "version": "8.0.0-alpha.2",
           }
         `)
 
@@ -83,7 +83,7 @@ describe('core', () => {
 
           * **cli:** fix config file loading ([8603c2f](https://github.com/TrigenSoftware/simple-github-release/commit/8603c2fde4aeb53619fae8bb9feba53093f51c65))",
             "previousTag": "v0.0.1-0",
-            "version": "0.0.1-0",
+            "version": "0.0.1-1",
           }
         `)
 
@@ -105,7 +105,7 @@ describe('core', () => {
           ### Removed
           - Section about "changelog" vs "CHANGELOG".",
             "previousTag": "",
-            "version": "0.3.0",
+            "version": "1.0.0",
           }
         `)
       })

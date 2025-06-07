@@ -104,24 +104,23 @@ export async function extractLastRelease(input: string | string[] | Iterable<str
     lines = chunk.toString('utf8').split(/\n/)
 
     for (line of lines) {
-      const matches = line.match(versionHeaderRegex)
+      const versionMatch = line.match(versionHeaderRegex)
 
-      if (matches) {
-        [, version] = matches
-
+      if (versionMatch) {
         if (inLastChanges) {
           break top
         }
 
+        [, version] = versionMatch
         inLastChanges = true
 
-        const match = line.match(tagsRegex)
+        const tagsMatch = line.match(tagsRegex)
 
-        if (match) {
+        if (tagsMatch) {
           [
             , previousTag,
             nextTag
-          ] = match
+          ] = tagsMatch
         }
 
         continue
