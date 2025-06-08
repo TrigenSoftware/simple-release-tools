@@ -154,7 +154,9 @@ async function importConfig(path: string) {
   const module = await import(path) as SimpleReleaseConfig | { default: SimpleReleaseConfig }
   const config = 'default' in module ? module.default : module
 
-  return config
+  return {
+    ...config
+  }
 }
 
 /**
