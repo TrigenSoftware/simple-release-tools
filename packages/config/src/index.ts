@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import fs from 'fs/promises'
 import { findUp } from 'find-up-simple'
 import type {
   ReleaserStepsOptions,
@@ -143,6 +143,20 @@ async function loadAndSetIfQuery(
   }
 }
 
+async function importConfig(path: string) {
+  if (path.endsWith('.json')) {
+    const json = await fs.readFile(path, 'utf-8')
+    const config = JSON.parse(json) as SimpleReleaseConfig
+
+    return config
+  }
+
+  const module = await import(path) as SimpleReleaseConfig | { default: SimpleReleaseConfig }
+  const config = 'default' in module ? module.default : module
+
+  return config
+}
+
 /**
  * Load simple-release config.
  * @param requirements
@@ -172,8 +186,7 @@ export async function load(
 
     if (foundPath) {
       try {
-        const module = await import(foundPath) as SimpleReleaseConfig | { default: SimpleReleaseConfig }
-        const config = 'default' in module ? module.default : module
+        const config = await importConfig(foundPath)
 
         validate(config, reqs)
 
