@@ -197,7 +197,8 @@ export abstract class MonorepoProject extends Project {
 
   private async getBumpOptions(
     project: Project,
-    options: MonorepoProjectBumpOptions
+    options: MonorepoProjectBumpOptions,
+    baseVersion?: string
   ) {
     const {
       preset = bumpDefaultOptions.preset,
@@ -218,7 +219,8 @@ export abstract class MonorepoProject extends Project {
       ...bumpOptions,
       ...byProject?.[name],
       preset: projectPreset,
-      tagPrefix
+      tagPrefix,
+      baseVersion
     }
 
     return projectBumpOptions
@@ -268,13 +270,15 @@ export abstract class MonorepoProject extends Project {
       project: Project
       options: MonorepoProjectBumpOptions
     }[] = []
+    const baseVersion = await this.manifest.getVersion()
     let hasBump = false
     let fixedVersion: string | undefined
 
     for await (const project of this.getProjects()) {
       const projectBumpOptions = await this.getBumpOptions(
         project,
-        options
+        options,
+        baseVersion
       )
       const version = await project.getNextVersion(projectBumpOptions)
 

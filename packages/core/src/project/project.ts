@@ -187,6 +187,7 @@ export abstract class Project {
     const { projectPath } = manifest
     const {
       version: forcedVersion,
+      baseVersion,
       as,
       prerelease,
       firstRelease: firstReleaseOption,
@@ -205,7 +206,7 @@ export abstract class Project {
       })
     }
 
-    const version = await manifest.getVersion()
+    const version = baseVersion || await manifest.getVersion()
 
     if (firstRelease) {
       return version

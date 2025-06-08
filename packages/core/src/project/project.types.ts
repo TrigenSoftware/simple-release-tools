@@ -39,6 +39,11 @@ export interface ProjectBumpOptions {
    */
   version?: string
   /**
+   * The base version to use for bumping.
+   * If not provided, the version will be getted from the manifest.
+   */
+  baseVersion?: string
+  /**
    * The type of release to bump to.
    * If not provided, the version will be determined based on the commits.
    */

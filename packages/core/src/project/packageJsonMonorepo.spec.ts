@@ -330,6 +330,36 @@ describe('core', () => {
 
           expect(message).toBe('chore(release): 2.1.0')
         })
+
+        it('should bump using base version', async () => {
+          const path = await forkProject('bump', packageJsonFixedMonorepoProject({
+            0: {
+              version: '4.0.0'
+            }
+          }))
+          const project = new PackageJsonMonorepoProject({
+            mode: 'fixed',
+            root: path,
+            getProjects
+          })
+          const result = await project.bump()
+
+          expect(result).toBe(true)
+          expect(project.versionUpdates).toMatchObject([
+            {
+              name: 'package-json-monorepo-project',
+              to: '4.1.0'
+            },
+            {
+              name: 'subproject-2',
+              to: '4.1.0'
+            },
+            {
+              name: 'subproject-3',
+              to: '4.1.0'
+            }
+          ])
+        })
       })
     })
   })
