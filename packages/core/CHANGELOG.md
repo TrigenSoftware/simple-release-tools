@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.0](https://github.com/TrigenSoftware/simple-release/compare/v2.0.3...v2.1.0) (2025-06-08)
+
+### Bug Fixes
+
+* bump fixed monorepo using root version as base ([fc3a73f](https://github.com/TrigenSoftware/simple-release/commit/fc3a73fa1a89bcdb0c1e7ae81361ebc0c5067d91))
+
 ## [2.0.3](https://github.com/TrigenSoftware/simple-release/compare/v2.0.2...v2.0.3) (2025-06-07)
 
 ### Bug Fixes
