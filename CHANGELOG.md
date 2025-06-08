@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2](https://github.com/TrigenSoftware/simple-release/compare/v2.1.1...v2.1.2) (2025-06-08)
+
+### Bug Fixes
+
+* **config:** fix esmodule config loading ([2cb04f4](https://github.com/TrigenSoftware/simple-release/commit/2cb04f42696dfc5837f863e927f8531c9dd9dd90))
+
 ## [2.1.1](https://github.com/TrigenSoftware/simple-release/compare/v2.1.0...v2.1.1) (2025-06-08)
 
 ### Bug Fixes
