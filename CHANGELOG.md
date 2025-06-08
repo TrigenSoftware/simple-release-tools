@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/TrigenSoftware/simple-release/compare/v2.1.0...v2.1.1) (2025-06-08)
+
+### Bug Fixes
+
+* **config:** fix json config loading ([01ec0d6](https://github.com/TrigenSoftware/simple-release/commit/01ec0d682fd0fab8bb850bf9cd8dd9c14930d29f))
+
 ## [2.1.0](https://github.com/TrigenSoftware/simple-release/compare/v2.0.3...v2.1.0) (2025-06-08)
 
 ### Features
