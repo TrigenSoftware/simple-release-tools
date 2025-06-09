@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.0](https://github.com/TrigenSoftware/simple-release/compare/v2.1.2...v2.2.0) (2025-06-09)
+
+### Features
+
+* `fetch` option for tag step to update local tags before tagging ([e3137e4](https://github.com/TrigenSoftware/simple-release/commit/e3137e439e313661e52dabfba38497c2b274a642))
+
 ## [2.1.0](https://github.com/TrigenSoftware/simple-release/compare/v2.0.3...v2.1.0) (2025-06-08)
 
 ### Bug Fixes
