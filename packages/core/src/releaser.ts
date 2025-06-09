@@ -281,8 +281,25 @@ export class Releaser<
         gitClient
       } = this
       const { dryRun } = this.options
+      const {
+        fetch,
+        ...tagOptions
+      } = {
+        ...this.stepsOptions.tag,
+        ...options
+      }
 
       logger.info('tag', 'Tagging version...')
+
+      if (fetch) {
+        logger.verbose('tag', 'Fetching fresh tags from the remote repository...')
+
+        if (!dryRun) {
+          await gitClient.fetch({
+            tags: true
+          })
+        }
+      }
 
       const tags = await project.getTags()
 
@@ -300,8 +317,7 @@ export class Releaser<
 
         if (!dryRun) {
           await gitClient.tag({
-            ...this.stepsOptions.tag,
-            ...options,
+            ...tagOptions,
             name: tag
           })
         }

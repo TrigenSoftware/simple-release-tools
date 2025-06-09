@@ -54,7 +54,12 @@ export interface ReleaserCheckoutOptions {
 
 export type ReleaserCommitOptions = Omit<GitCommitParams, 'verify' | 'files' | 'message'>
 
-export type ReleaserTagOptions = Omit<GitTagParams, 'name' | 'message'>
+export interface ReleaserTagOptions extends Omit<GitTagParams, 'name' | 'message'> {
+  /**
+   * Fetch fresh tags from the remote repository before tagging.
+   */
+  fetch?: boolean
+}
 
 export type ReleaserPushOptions = Omit<GitPushParams, 'verify' | 'tags' | 'followTags'>
 
