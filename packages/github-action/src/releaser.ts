@@ -104,6 +104,12 @@ export class ReleaserGithubAction<P extends Project = Project> extends Releaser<
     })
   }
 
+  override tag() {
+    return super.tag({
+      fetch: true
+    })
+  }
+
   override push() {
     return super.push({
       force: true
